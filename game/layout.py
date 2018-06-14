@@ -1,9 +1,12 @@
 import math
 
-from game.hexmap import HexMap, Hex
+from game.hexmap import HexMap, Hex, TerrainType
 
 
 class HexMapLayout:
+
+    colors = {TerrainType.t_clr: (0.5, 0.3, 0.1),
+              TerrainType.t_hll: (0.7, 0.2, 0.3)}
 
     def __init__(self, hexmap: HexMap, size = 20, offset = (0, 0)):
         self.size = size

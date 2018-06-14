@@ -80,7 +80,7 @@ class HexMap:
     def __init__(self, sizex: int, sizey: int = None):
         if not sizey:
             sizey = sizex
-        self.map = [[Hex(x, y) for x in range(sizex)] for y in range(sizey)]
+        self.map = {(x, y): Hex(x, y) for x in range(sizex) for y in range(sizey)}
         self.sizex = sizex
         self.sizey = sizey
 
@@ -101,9 +101,12 @@ class HexMap:
         return f'<HexMap({self.sizex}, {self.sizey})>'
 
     def __iter__(self):
-        for x in self.map:
-            for y in x:
-                yield y
+        for hex in self.map.values():
+            yield hex
+
+    def set_hex(self, position, hex: Hex):
+        self.map[position] = hex
+
 
 def flat_hex_corner(center: Hex, size, i):
     angle_deg = 60 * i
