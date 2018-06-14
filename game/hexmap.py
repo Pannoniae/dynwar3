@@ -22,6 +22,15 @@ class TerrainType:
 
 
 class Hex:
+
+    # Just a singleton, but we like to write unreadable code
+    _insts = {}
+    def __new__(cls, *args, **kwargs):
+        x, y, *rest = args
+        if (x, y) not in cls._insts.keys():
+            cls._insts[(x, y)] = object.__new__(cls)
+        return cls._insts[(x, y)]
+
     def __init__(self, x: int, y: int, terrain = TerrainType.t_clr):
         """ Are you surprised? """
         self.x = x
@@ -33,6 +42,12 @@ class Hex:
 
     def __sub__(self, other):
         return Hex(self.x - other.x, self.y - other.y)
+
+    def __repr__(self):
+        return f'<Hex({self.x, self.y})>'
+
+    def __eq__(self, other):
+        return self.x == other.x and self.y == other.y and self.terrain == other.terrain
 
 
 
@@ -61,7 +76,7 @@ class HexMap:
         self.sizey = sizey
 
     def get_neighbor(self, hex: Hex, direction):
-        return Hex + self.neighbors[direction]
+        return hex + self.neighbors[direction]
 
-    def __str__(self):
+    def __repr__(self):
         return f'<HexMap({self.sizex}, {self.sizey})>'
