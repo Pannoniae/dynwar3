@@ -1,4 +1,4 @@
-from game.hex import TerrainType, Hex
+from game.hexmap import TerrainType, Hex
 
 
 def test_terrain_set():
