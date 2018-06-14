@@ -8,16 +8,17 @@ class TerrainType:
     t_des = 50
 
     @classmethod
-    def majorType(cls, terrain):
+    def major_type_for(cls, terrain):
         return terrain - (terrain % 10)
 
     @classmethod
-    def isMajorType(cls, terrain):
+    def is_major_type(cls, terrain):
         return terrain % 10 == 0
 
     @classmethod
-    def isMinorType(cls, terrain):
-        return not cls.isMajorType(terrain)
+    def is_minor_type(cls, terrain):
+        return not cls.is_major_type(terrain)
+
 
 
 class Hex:
@@ -29,6 +30,9 @@ class Hex:
 
     def __add__(self, other):
         return Hex(self.x + other.x, self.y + other.y)
+
+    def __sub__(self, other):
+        return Hex(self.x - other.x, self.y - other.y)
 
 
 
@@ -52,7 +56,7 @@ class HexMap:
     def __init__(self, sizex: int, sizey: int = None):
         if not sizey:
             sizey = sizex
-        self.map = [[Hex(x, y, TerrainType.t_clr) for x in range(sizex)] for y in range(sizey)]
+        self.map = [[Hex(x, y) for x in range(sizex)] for y in range(sizey)]
         self.sizex = sizex
         self.sizey = sizey
 
