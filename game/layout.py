@@ -14,13 +14,18 @@ class HexMapLayout:
         self.offset = offset
 
     def get_hex_position(self, hex: Hex):
-        pos1 = 0
-        x = self.size * 1.5
-        for i in range(hex.x):
-            pos1 += x
-        pos2 = hex.y * (math.sqrt(3) * self.size)
-        for i in range(hex.x):
-            pos2 += (math.sqrt(3) * self.size) / 2
-        pos1 += self.offset[0]
-        pos2 += self.offset[1]
-        return pos1, pos2
+        x = self.size * (3 / 2 * hex.x)
+        y = self.size * (math.sqrt(3) / 2 * hex.x + math.sqrt(3) * hex.y)
+        x += self.offset[0]
+        y += self.offset[1]
+        return x, y
+        #pos1 = 0
+        #x = self.size * 1.5
+        #for i in range(hex.x):
+        #    pos1 += x
+        #pos2 = hex.y * (math.sqrt(3) * self.size)
+        #for i in range(hex.x):
+        #    pos2 += (math.sqrt(3) * self.size) / 2
+        #pos1 += self.offset[0]
+        #pos2 += self.offset[1]
+        #return pos1, pos2
