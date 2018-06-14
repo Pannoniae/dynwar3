@@ -16,3 +16,4 @@ class Hex:
         """ Are you surprised? """
         self.x = x
         self.y = y
+        self.terrain = terrain
