@@ -1,8 +1,5 @@
-class Hex:
-    def __init__(self, x: int, y: int):
-        """ Are you surprised? """
-        self.x = x
-        self.y = y
+from game.hex import Hex
+
 
 class HexMap:
     def __init__(self, sizex: int, sizey: int = None):
