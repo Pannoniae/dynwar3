@@ -4,14 +4,14 @@
     <session id="-1116783055">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="2092" />
-          <entry key="txt" value="187" />
+          <entry key="py" value="2095" />
+          <entry key="txt" value="207" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="187" />
-          <entry key="Python" value="2092" />
+          <entry key="PLAIN_TEXT" value="207" />
+          <entry key="Python" value="2095" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">

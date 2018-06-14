@@ -23,22 +23,11 @@ width, height = 800, 600
 pygame.display.init()
 screen = pygame.display.set_mode((width, height), 0, 32)
 
-# Create raw surface data (could also be done with something else than
-# NumPy)
-data = numpy.empty(width * height * 4, dtype=numpy.int8)
-
-# Create Cairo surface
+data = numpy.empty(width * height * 4, dtype = numpy.int8)
 cairo_surface = cairo.ImageSurface.create_for_data(
     data, cairo.FORMAT_ARGB32, width, height, width * 4)
-
-# Draw with Cairo on the surface
 ctx = cairo.Context(cairo_surface)
 draw(ctx)
- # On little-endian machines (and perhaps big-endian, who knows?),
-# Cairo's ARGB format becomes a BGRA format. PyGame does not accept
-# BGRA, but it does accept RGBA, which is why we have to convert the
-# surface data. You can check what endian-type you have by printing
-# out sys.byteorder
 data_string = bgra_surf_to_rgba_string(cairo_surface)
 
 # Create PyGame surface
