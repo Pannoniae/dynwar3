@@ -44,10 +44,16 @@ class Hex:
         return Hex(self.x - other.x, self.y - other.y)
 
     def __repr__(self):
-        return f'<Hex({self.x, self.y})>'
+        return f'<Hex({self.x}, {self.y})>'
 
     def __eq__(self, other):
         return self.x == other.x and self.y == other.y and self.terrain == other.terrain
+
+    def __ne__(self, other):
+        return not self.__eq__(self, other)
+
+    def __hash__(self):
+        return hash(self.x) * 10 + hash(self.y)
 
 
 
@@ -77,6 +83,17 @@ class HexMap:
 
     def get_neighbor(self, hex: Hex, direction):
         return hex + self.neighbors[direction]
+
+    @staticmethod
+    def get_hexes_in_range(hex: Hex, n: int):
+        for x in range(-n, n+1):
+            for y in range(max(-n, -x - n), min(n, -x + n) + 1):
+                yield hex + Hex(x, y)
+
+    @staticmethod
+    def distance(hex: Hex, other: Hex):
+        return (abs(hex.x - other.x) + + abs(hex.x + hex.y - other.x - other.y) + abs(hex.y - other.y)) / 2
+
 
     def __repr__(self):
         return f'<HexMap({self.sizex}, {self.sizey})>'
