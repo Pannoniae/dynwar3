@@ -7,3 +7,6 @@ def test_terrain_set():
 
 def test_major_terrain():
     assert TerrainType.majorType(TerrainType.t_hll) == TerrainType.t_mtn
+
+def test_minor_terrain():
+    assert TerrainType.isMinorType(TerrainType.t_hll)

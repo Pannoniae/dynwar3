@@ -11,6 +11,14 @@ class TerrainType:
     def majorType(cls, terrain):
         return terrain - (terrain % 10)
 
+    @classmethod
+    def isMajorType(cls, terrain):
+        return terrain % 10 == 0
+
+    @classmethod
+    def isMinorType(cls, terrain):
+        return not cls.isMajorType(terrain)
+
 class Hex:
     def __init__(self, x: int, y: int, terrain):
         """ Are you surprised? """
