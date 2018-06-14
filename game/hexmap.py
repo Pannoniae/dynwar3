@@ -6,7 +6,11 @@ class Hex:
 
 class HexMap:
     def __init__(self, sizex: int, sizey: int = None):
-        self.map = #todo
-        for x in range(sizex):
-            for y in range(sizey):
-                self.map[x][y] = Hex(x, y)
+        if not sizey:
+            sizey = sizex
+        self.map = [[Hex(x, y) for x in range(sizex)] for y in range(sizey)]
+        self.sizex = sizex
+        self.sizey = sizey
+
+    def __str__(self):
+        return f'<HexMap({self.sizex}, {self.sizey})>'
