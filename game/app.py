@@ -12,7 +12,7 @@ from game.util import bgra_surf_to_rgba_string
 width, height = 800, 600
 
 def draw(ctx):
-    ctx.set_line_width(5)
+    ctx.set_line_width(1)
     ctx.set_source_rgba(0.6, 0, 0.4, 1)
     for hex in hm:
         r, g, b = layout.colors[hex.terrain]
@@ -21,6 +21,7 @@ def draw(ctx):
             x, y = flat_hex_corner(Hex(*layout.get_hex_position(hex)), layout.size, corner)
             ctx.line_to(x, y)
         ctx.fill()
+        ctx.set_source_rgba(*layout.EDGE_COLOR, 1)
         for corner in range(0, 7):
             x, y = flat_hex_corner(Hex(*layout.get_hex_position(hex)), layout.size, corner)
             ctx.line_to(x, y)
