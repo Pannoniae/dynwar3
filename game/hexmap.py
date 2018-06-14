@@ -1,3 +1,6 @@
+from math import cos, sin, pi
+
+
 class TerrainType:
     t_sea = 0
     t_clr = 10
@@ -94,6 +97,15 @@ class HexMap:
     def distance(hex: Hex, other: Hex):
         return (abs(hex.x - other.x) + + abs(hex.x + hex.y - other.x - other.y) + abs(hex.y - other.y)) / 2
 
-
     def __repr__(self):
         return f'<HexMap({self.sizex}, {self.sizey})>'
+
+    def __iter__(self):
+        for x in self.map:
+            for y in x:
+                yield y
+
+def flat_hex_corner(center: Hex, size, i):
+    angle_deg = 60 * i
+    angle_rad = pi / 180 * angle_deg
+    return center.x + size * cos(angle_rad), center.y + size * sin(angle_rad)
