@@ -15,26 +15,10 @@ def draw(ctx):
     ctx.set_line_width(5)
     ctx.set_source_rgba(0.6, 0, 0.4, 1)
     for hex in hm:
-        ctx.move_to(*layout.get_hex_position(hex))
-        for corner in range(1, 7):
-            x, y = flat_hex_corner(Hex(*layout.get_hex_position(hex)), 20, corner)
-            #x += 100
-            #y += 100
+        for corner in range(0, 7):
+            x, y = flat_hex_corner(Hex(*layout.get_hex_position(hex)), layout.size, corner)
             ctx.line_to(x, y)
         ctx.stroke()
-    #center_pos = (100, 100)
-    #ctx.move_to(*center_pos)
-    #for hex in hm:
-    #    x, y = flat_hex_corner(Hex(hex.x * 30, hex.y * 30), 20, 0)
-    #    x += center_pos[0]
-    #    y += center_pos[1]
-    #    ctx.move_to(x, y)
-    #    for corner in range(1, 7):
-    #        x, y = flat_hex_corner(Hex(hex.x * 30, hex.y * 30), 20, corner)
-    #        x += center_pos[0]
-    #        y += center_pos[1]
-    #        ctx.line_to(x, y)
-    #    ctx.stroke()
 
 pygame.display.init()
 screen = pygame.display.set_mode((width, height), 0, 32)
@@ -43,7 +27,7 @@ data = numpy.empty(width * height * 4, dtype = numpy.int8)
 cairo_surface = cairo.ImageSurface.create_for_data(
     data, cairo.FORMAT_ARGB32, width, height, width * 4)
 hm = HexMap(10)
-layout = HexMapLayout(hm, (100, 100))
+layout = HexMapLayout(hm, 40, (100, 100))
 ctx = cairo.Context(cairo_surface)
 draw(ctx)
 data_string = bgra_surf_to_rgba_string(cairo_surface)
