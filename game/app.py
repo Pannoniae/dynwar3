@@ -45,17 +45,6 @@ data_string = bgra_surf_to_rgba_string(cairo_surface)
 pygame_surface = pygame.image.frombuffer(
     data_string, (width, height), 'RGBA')
 
-# Draw a white circle to the screen using pygame.
-radius = int(min((width, height))/2*0.7)
-pos = [int(a/2) for a in (width, height)]
-pygame.draw.circle(screen, (255,255,255), pos, radius)
-
-# Draw a smaller black circle to the screen using Cairo.
-context = cairo.Context(cairo_surface)
-context.set_source_rgb(0, 0, 0)
-context.arc(width/2, height/2, min((width, height))/2*0.5, 0, 2*math.pi)
-context.fill()
-
 screen.blit(pygame_surface, (0,0))
 pygame.display.flip()
 
