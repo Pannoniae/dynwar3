@@ -14,8 +14,7 @@ class HexMapLayout:
         x = self.size * 1.5
         for i in range(hex.x):
             pos1 += x
-        pos2 = hex.y * self.size * 2
-        #pos2 = 0
+        pos2 = hex.y * (math.sqrt(3) * self.size)
         for i in range(hex.x):
             pos2 += (math.sqrt(3) * self.size) / 2
         pos1 += self.offset[0]
