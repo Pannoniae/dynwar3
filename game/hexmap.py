@@ -50,7 +50,7 @@ class Hex:
         return self.x == other.x and self.y == other.y and self.terrain == other.terrain
 
     def __ne__(self, other):
-        return not self.__eq__(self, other)
+        return not self.__eq__(other)
 
     def __hash__(self):
         return hash(self.x) * 10 + hash(self.y)

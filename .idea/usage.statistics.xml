@@ -4,21 +4,21 @@
     <session id="-1116783055">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="3870" />
-          <entry key="txt" value="345" />
+          <entry key="py" value="3871" />
+          <entry key="txt" value="420" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="345" />
-          <entry key="Python" value="3870" />
+          <entry key="PLAIN_TEXT" value="420" />
+          <entry key="Python" value="3871" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="gitignore" value="2" />
           <entry key="nodeids" value="1" />
-          <entry key="py" value="49" />
+          <entry key="py" value="50" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -26,6 +26,7 @@
           <entry key="Git file" value="2" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="Python" value="49" />
+          <entry key="UML" value="1" />
         </counts>
       </usages-collector>
     </session>
