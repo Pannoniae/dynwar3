@@ -24,8 +24,8 @@ class HexMapLayout:
         _position = list(position)
         _position[0] -= self.offset[0]
         _position[1] -= self.offset[1]
-        x = (2. / 3 * _position[0]) / self.size
-        y = (-1. / 3 * _position[0] + math.sqrt(3) / 3 * _position[1]) / self.size
+        x = (2 / 3 * _position[0]) / self.size
+        y = (-1 / 3 * _position[0] + math.sqrt(3) / 3 * _position[1]) / self.size
         return self.hex_round((x, y))
 
     def hex_round(self, position: tuple):

@@ -17,7 +17,7 @@ def draw(ctx, mouse_pos):
     ctx.set_source_rgba(0.6, 0, 0.4, 1)
     for hex in hm:
         r, g, b = layout.colors[hex.terrain]
-        ctx.set_source_rgba(r, g, b, 0.5)
+        ctx.set_source_rgba(r, g, b, 1)
         for corner in range(0, 7):
             x, y = flat_hex_corner(Hex(*layout.get_hex_position(hex)), layout.size, corner)
             ctx.line_to(x, y)
@@ -29,9 +29,7 @@ def draw(ctx, mouse_pos):
         ctx.stroke()
 
     if mouse_pos:
-        #print(layout.get_containing_hex_center(mouse_pos), layout.pixel_to_hex(mouse_pos))
         ctx.set_source_rgba(1, 0, 0, 1)
-        #ctx.move_to(*layout.get_containing_hex_center(mouse_pos))
         ctx.arc(*layout.get_containing_hex_center(mouse_pos), 10, 0, math.pi * 2)
         ctx.stroke()
 
@@ -52,10 +50,10 @@ ctx = cairo.Context(cairo_surface)
 clock = pygame.time.Clock()
 while 1:
     for e in pygame.event.get():
-        if e.type == pygame.MOUSEMOTION:
-            pos = pygame.mouse.get_pos()
-            draw(ctx, pos)
-        elif e.type == pygame.QUIT:
+        # if e.type == pygame.MOUSEMOTION:
+        pos = pygame.mouse.get_pos()
+        draw(ctx, pos)
+        if e.type == pygame.QUIT:
             sys.exit()
         data_string = bgra_surf_to_rgba_string(cairo_surface)
 
