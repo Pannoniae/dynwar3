@@ -15,12 +15,12 @@ def test_direction_equal():
     hm = HexMap(5)
     assert hm.get_neighbor(Hex(3, 3), Direction.NORTH) == Hex(3, 2)
 
-def test_hex_objects_equal():
-    a = Hex(3, 3)
-    b = Hex(4, 5)
-    c = Hex(3, 3)
-    assert a is c
-    assert a is not b
+#def test_hex_objects_equal():
+#    a = Hex(3, 3)
+#    b = Hex(4, 5)
+#    c = Hex(3, 3)
+#    assert a is c
+#    assert a is not b
 
 def test_hex_range():
     hm = HexMap(5)

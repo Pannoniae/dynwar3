@@ -27,12 +27,12 @@ class TerrainType:
 class Hex:
 
     # Just a singleton, but we like to write unreadable code
-    _insts = {}
-    def __new__(cls, *args, **kwargs):
-        x, y, *rest = args
-        if (x, y) not in cls._insts.keys():
-            cls._insts[(x, y)] = object.__new__(cls)
-        return cls._insts[(x, y)]
+    #_insts = {}
+    #def __new__(cls, *args, **kwargs):
+    #    x, y, *rest = args
+    #    if (x, y) not in cls._insts.keys():
+    #        cls._insts[(x, y)] = object.__new__(cls)
+    #    return cls._insts[(x, y)]
 
     def __init__(self, x: int, y: int, terrain = TerrainType.t_clr):
         """ Are you surprised? """

@@ -17,6 +17,9 @@ def draw(ctx, mouse_pos):
     ctx.set_source_rgba(0.6, 0, 0.4, 1)
     for hex in hm:
         r, g, b = layout.colors[hex.terrain]
+        if hex.terrain != 10:
+            print(hex.terrain)
+        #print(Hex(2, 2).terrain)
         ctx.set_source_rgba(r, g, b, 1)
         for corner in range(0, 7):
             x, y = flat_hex_corner(Hex(*layout.get_hex_position(hex)), layout.size, corner)
