@@ -9,7 +9,11 @@ class HexMapLayout:
     colors = {TerrainType.t_clr: (0.5, 0.3, 0.1),
               TerrainType.t_hll: (0.7, 0.2, 0.3)}
 
-    def __init__(self, hexmap: HexMap, size: int = 20, offset: tuple = (0, 0)):
+    def __init__(self, hexmap: HexMap, size: int = 20, offset = None):
+        if offset is None:
+            offset = [100, 100]
+        elif type(offset) == tuple:
+            offset = list(offset)
         self.size = size
         self.offset = offset
 

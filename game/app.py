@@ -13,6 +13,10 @@ from game.util import bgra_surf_to_rgba_string
 width, height = 800, 600
 
 def draw(ctx, mouse_pos):
+
+    ctx.set_source_rgba(0, 0, 0, 1)
+    ctx.paint()
+
     ctx.set_line_width(1)
     ctx.set_source_rgba(0.6, 0, 0.4, 1)
     for hex in hm:
@@ -44,21 +48,30 @@ hm = HexMap(10)
 i = Hex(2, 2)
 i.terrain = TerrainType.t_hll
 hm.set_hex((2, 2), i)
-layout = HexMapLayout(hm, 60, (100, 100))
+layout = HexMapLayout(hm, 20, (100, 100))
 ctx = cairo.Context(cairo_surface)
 
 clock = pygame.time.Clock()
 while 1:
+    data_string = bgra_surf_to_rgba_string(cairo_surface)
+    pygame_surface = pygame.image.frombuffer(
+            data_string, (width, height), 'RGBA')
+
     for e in pygame.event.get():
-        # if e.type == pygame.MOUSEMOTION:
+        #if e.type == pygame.MOUSEMOTION:
         pos = pygame.mouse.get_pos()
         draw(ctx, pos)
+        if e.type == pygame.KEYDOWN:
+            if e.key == pygame.K_LEFT:
+                layout.offset[0] -= 10
+            if e.key == pygame.K_RIGHT:
+                layout.offset[0] += 10
+            if e.key == pygame.K_UP:
+                layout.offset[1] -= 10
+            if e.key == pygame.K_DOWN:
+                layout.offset[1] += 10
         if e.type == pygame.QUIT:
             sys.exit()
-        data_string = bgra_surf_to_rgba_string(cairo_surface)
 
-        # Create PyGame surface
-        pygame_surface = pygame.image.frombuffer(
-                data_string, (width, height), 'RGBA')
         screen.blit(pygame_surface, (0, 0))
         pygame.display.update()
