@@ -38,7 +38,6 @@ class HexMapLayout:
 
     def get_containing_hex_center(self, position: tuple):
         hex = self.pixel_to_hex(position)
-        print(self.get_hex_position(hex))
         return self.get_hex_position(hex)
 
 def _cube_round(cube):
