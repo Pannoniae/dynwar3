@@ -1,5 +1,6 @@
 import math
 import sys
+from typing import List
 
 import numpy
 
@@ -11,7 +12,7 @@ from game.layout import HexMapLayout
 from game.unit import Infantry
 from game.util import bgra_surf_to_rgba_string
 
-width, height = 800, 600
+width, height = 1920, 1080
 
 def draw(ctx, mouse_pos):
 
@@ -20,6 +21,7 @@ def draw(ctx, mouse_pos):
 
     ctx.set_line_width(1)
     ctx.set_source_rgba(0.6, 0, 0.4, 1)
+    units: List[Hex] = []
     for hex in hm:
         r, g, b = layout.colors[hex.terrain]
         ctx.set_source_rgba(r, g, b, 1)
@@ -27,17 +29,16 @@ def draw(ctx, mouse_pos):
             x, y = flat_hex_corner(Hex(*layout.get_hex_position(hex)), layout.size, corner)
             ctx.line_to(x, y)
         ctx.fill()
-        if hex.has_unit():
-            ctx.set_source_rgba(*hex.unit.color, 1)
-            for corner in range(0, 7):
-                x, y = flat_hex_corner(Hex(*layout.get_hex_position(hex)), layout.size * 0.75, corner)
-                ctx.line_to(x, y)
-            ctx.fill()
         ctx.set_source_rgba(*layout.EDGE_COLOR, 1)
         for corner in range(0, 7):
             x, y = flat_hex_corner(Hex(*layout.get_hex_position(hex)), layout.size, corner)
             ctx.line_to(x, y)
         ctx.stroke()
+        if hex.has_unit():
+            units.append(hex)
+    for hex in units:
+        ctx.set_source_surface(cairo_surface.create_from_png('data/inf.png'), *layout.get_hex_upper_corner(hex))
+        ctx.paint()
 
     if mouse_pos:
         ctx.set_source_rgba(1, 0, 0, 1)
@@ -46,10 +47,10 @@ def draw(ctx, mouse_pos):
 
 
 pygame.display.init()
-screen = pygame.display.set_mode((width, height), 0, 32)
+screen = pygame.display.set_mode((width, height), pygame.HWSURFACE | pygame.FULLSCREEN, 32)
 
 data = numpy.empty(width * height * 4, dtype = numpy.int8)
-cairo_surface = cairo.ImageSurface.create_for_data(
+cairo_surface: cairo.ImageSurface = cairo.ImageSurface.create_for_data(
     data, cairo.FORMAT_ARGB32, width, height, width * 4)
 hm = HexMap(10)
 u = Infantry()
@@ -60,7 +61,7 @@ hm.set_hex((2, 2), i)
 layout = HexMapLayout(hm, 20, (100, 100))
 ctx = cairo.Context(cairo_surface)
 
-clock = pygame.time.Clock()
+clock: pygame.time.Clock = pygame.time.Clock()
 while 1:
     data_string = bgra_surf_to_rgba_string(cairo_surface)
     pygame_surface = pygame.image.frombuffer(
@@ -84,3 +85,4 @@ while 1:
         screen.blit(pygame_surface, (0, 0))
         pygame.display.update()
     clock.tick()
+    print(clock.get_fps())

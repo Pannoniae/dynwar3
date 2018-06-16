@@ -1,4 +1,5 @@
 import math
+from typing import Optional, Tuple
 
 from game.hexmap import HexMap, Hex, TerrainType
 
@@ -9,22 +10,28 @@ class HexMapLayout:
     colors = {TerrainType.t_clr: (0.5, 0.3, 0.1),
               TerrainType.t_hll: (0.7, 0.2, 0.3)}
 
-    def __init__(self, hexmap: HexMap, size: int = 20, offset = None):
+    def __init__(self, hexmap: HexMap, size: int = 20, offset: Optional[tuple] = None):
         if offset is None:
-            offset = [100, 100]
+            offset = (0, 0)
         elif type(offset) == tuple:
             offset = list(offset)
         self.size = size
         self.offset = offset
 
-    def get_hex_position(self, hex: Hex):
+    def get_hex_position(self, hex: Hex) -> Tuple[int, int]:
         x = self.size * (3 / 2 * hex.x)
         y = self.size * (math.sqrt(3) / 2 * hex.x + math.sqrt(3) * hex.y)
         x += self.offset[0]
         y += self.offset[1]
         return x, y
 
-    def pixel_to_hex(self, position: tuple):
+    def get_hex_upper_corner(self, hex: Hex) -> Tuple[int, int]:
+        x, y = self.get_hex_position(hex)
+        x -= self.size
+        y -= self.size
+        return x, y
+
+    def pixel_to_hex(self, position: tuple) -> Hex:
         _position = list(position)
         _position[0] -= self.offset[0]
         _position[1] -= self.offset[1]
@@ -40,7 +47,7 @@ class HexMapLayout:
         return Hex(*hex2)
 
 
-    def get_containing_hex_center(self, position: tuple):
+    def get_containing_hex_center(self, position: tuple) -> Tuple[int, int]:
         hex = self.pixel_to_hex(position)
         return self.get_hex_position(hex)
 
