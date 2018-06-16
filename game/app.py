@@ -8,6 +8,7 @@ import pygame
 
 from game.hexmap import flat_hex_corner, Hex, HexMap, TerrainType
 from game.layout import HexMapLayout
+from game.unit import Infantry
 from game.util import bgra_surf_to_rgba_string
 
 width, height = 800, 600
@@ -26,6 +27,12 @@ def draw(ctx, mouse_pos):
             x, y = flat_hex_corner(Hex(*layout.get_hex_position(hex)), layout.size, corner)
             ctx.line_to(x, y)
         ctx.fill()
+        if hex.has_unit():
+            ctx.set_source_rgba(*hex.unit.color, 1)
+            for corner in range(0, 7):
+                x, y = flat_hex_corner(Hex(*layout.get_hex_position(hex)), layout.size * 0.75, corner)
+                ctx.line_to(x, y)
+            ctx.fill()
         ctx.set_source_rgba(*layout.EDGE_COLOR, 1)
         for corner in range(0, 7):
             x, y = flat_hex_corner(Hex(*layout.get_hex_position(hex)), layout.size, corner)
@@ -45,8 +52,10 @@ data = numpy.empty(width * height * 4, dtype = numpy.int8)
 cairo_surface = cairo.ImageSurface.create_for_data(
     data, cairo.FORMAT_ARGB32, width, height, width * 4)
 hm = HexMap(10)
+u = Infantry()
 i = Hex(2, 2)
 i.terrain = TerrainType.t_hll
+i.set_unit(u)
 hm.set_hex((2, 2), i)
 layout = HexMapLayout(hm, 20, (100, 100))
 ctx = cairo.Context(cairo_surface)
@@ -72,6 +81,6 @@ while 1:
                 layout.offset[1] += 10
         if e.type == pygame.QUIT:
             sys.exit()
-
         screen.blit(pygame_surface, (0, 0))
         pygame.display.update()
+    clock.tick()

@@ -1,4 +1,7 @@
 from math import cos, sin, pi
+from typing import Optional
+
+from game.unit import Unit
 
 
 class TerrainType:
@@ -22,7 +25,8 @@ class TerrainType:
     def is_minor_type(cls, terrain):
         return not cls.is_major_type(terrain)
 
-
+class UnitNotFound(Exception):
+    pass
 
 class Hex:
 
@@ -39,6 +43,17 @@ class Hex:
         self.x = x
         self.y = y
         self.terrain = terrain
+        self.unit: Optional[Unit] = None
+
+    def get_unit(self):
+        if self.unit is None:
+            raise UnitNotFound('No unit in this hex')
+
+    def set_unit(self, unit: Unit):
+        self.unit = unit
+
+    def has_unit(self):
+        return self.unit is not None
 
     def __add__(self, other):
         return Hex(self.x + other.x, self.y + other.y)
@@ -104,8 +119,11 @@ class HexMap:
         for hex in self.map.values():
             yield hex
 
-    def set_hex(self, position, hex: Hex):
+    def set_hex(self, position: tuple, hex: Hex):
         self.map[position] = hex
+
+    def get_hex(self, position: tuple):
+        return self.map[position]
 
 
 def flat_hex_corner(center: Hex, size, i):
