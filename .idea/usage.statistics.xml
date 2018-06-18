@@ -5,14 +5,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="4" />
-          <entry key="py" value="9577" />
-          <entry key="txt" value="972" />
+          <entry key="py" value="9981" />
+          <entry key="txt" value="1025" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="976" />
-          <entry key="Python" value="9577" />
+          <entry key="PLAIN_TEXT" value="1029" />
+          <entry key="Python" value="9981" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -22,7 +22,7 @@
           <entry key="nodeids" value="1" />
           <entry key="png" value="1" />
           <entry key="pstat" value="8" />
-          <entry key="py" value="96" />
+          <entry key="py" value="102" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -31,7 +31,7 @@
           <entry key="Image" value="1" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="Profiler Session" value="8" />
-          <entry key="Python" value="95" />
+          <entry key="Python" value="101" />
           <entry key="Scratch" value="1" />
           <entry key="UML" value="1" />
         </counts>

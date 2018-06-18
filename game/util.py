@@ -38,5 +38,4 @@ def get_cairo_surface(pygame_surface):
                                                           ss.pitch * ss.h,
                                                           PyBUF_WRITE)
     pixels = ctypes.cast(pixels_ptr, ctypes.py_object).value
-    print(pixels.readonly)
     return cairo.ImageSurface.create_for_data(pixels, cairo.FORMAT_RGB24, ss.w, ss.h, ss.pitch)
