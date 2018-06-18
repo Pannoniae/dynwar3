@@ -1,10 +1,12 @@
 import cairo
 import pygame
+from pygame.rect import Rect
 
 from game.io.eventhandler import EventHandler
 from game.hexmap import HexMap, Hex, TerrainType
 from game.io.renderer import Renderer
 from game.unit import Infantry
+from game.widget import Widget
 
 
 class Game:
@@ -19,6 +21,7 @@ class Game:
         self.renderer = Renderer(screen, self)
         self.event_handler = EventHandler(self)
         self.clock = pygame.time.Clock()
+        self._a = Widget(Rect(1, 1, 100, 100))
         while 1:
             self.main_loop()
 
