@@ -1,9 +1,9 @@
 import cairo
 import pygame
 
-from game.eventhandler import EventHandler
+from game.io.eventhandler import EventHandler
 from game.hexmap import HexMap, Hex, TerrainType
-from game.renderer import Renderer
+from game.io.renderer import Renderer
 from game.unit import Infantry
 
 
@@ -28,3 +28,4 @@ class Game:
         self.renderer.draw(self.renderer.ctx, pos)
         pygame.display.update()
         self.clock.tick()
+        print(self.clock.get_fps())
