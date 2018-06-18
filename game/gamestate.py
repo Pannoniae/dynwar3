@@ -10,14 +10,15 @@ from game.widget import Widget
 
 
 class Game:
-    def __init__(self, screen: pygame.Surface, surf: cairo.Surface):
+    def __init__(self, screen: pygame.Surface, surf: cairo.Surface, debug = False):
+
+        self.debug = debug
 
         self.surf = surf
-        self.renderer = Renderer(screen, self)
+
         self.event_handler = EventHandler(self)
         self.clock = pygame.time.Clock()
         self.widgets = []
-        self._a = self.add_widget(Widget(Rect(1, 1, 100, 100)))
 
         self.hm = HexMap(10)
         i = Hex(2, 2)
@@ -26,6 +27,9 @@ class Game:
         i.set_unit(u)
         self.hm.set_hex((2, 2), i)
 
+        self.renderer = Renderer(screen, self)
+
+        u.reload()
 
         while 1:
             self.main_loop()
@@ -36,7 +40,12 @@ class Game:
         self.renderer.draw(self.renderer.ctx, pos)
         pygame.display.update()
         self.clock.tick()
-        print(self.clock.get_fps())
+        #print(self.clock.get_fps())
+
+    def remove_widget(self, widget: Widget):
+        for widget_ in self.widgets:
+            if widget_ == widget:
+                self.widgets.remove(widget_)
 
     def add_widget(self, widget: Widget):
         self.widgets.append(widget)

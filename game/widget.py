@@ -6,7 +6,7 @@ class Widget:
 
     def __init__(self, box: Rect, parent = None):
         self.parent = parent
-        self.box = box
+        self.box: Rect = box
         self.active = False
 
     def is_in_box(self, pos: Tuple[int, int]):
@@ -20,6 +20,8 @@ class Widget:
 
     def on_enter(self):
         self.active = True
+        print('entered')
 
     def on_exit(self):
         self.active = False
+        print('exited')

@@ -99,8 +99,17 @@ class HexMap:
         self.sizex = sizex
         self.sizey = sizey
 
-        def move_unit(unit: Unit, direction: Direction):
-            unit.hex = self.get_neighbor(unit.hex, direction)
+    def move_unit(self, unit: Unit, direction: Direction):
+        unit.hex = self.get_neighbor(unit.hex, direction)
+
+    def reload_all_units(self):
+        for unit in self.get_all_units():
+            unit.reload()
+
+    def get_all_units(self):
+        for hex in self.map.values():
+            if hex.unit:
+                yield hex.unit
 
     def get_neighbor(self, hex: Hex, direction):
         return hex + self.neighbors[direction]

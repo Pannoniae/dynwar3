@@ -16,6 +16,8 @@ class AbstractEventHandler:
                 self.on_key_press(e.unicode, e.key, e.mod)
             if e.type == pygame.QUIT:
                 self.on_quit()
+            if e.type == pygame.MOUSEMOTION:
+                self.on_mouse_motion(e.pos, e.rel, e.buttons)
 
     def on_quit(self):
         pass
@@ -58,13 +60,17 @@ class EventHandler(AbstractEventHandler):
 
     def on_key_press(self, unicode, key, mod):
         if key == pygame.K_LEFT:
-            self.game.renderer.ctx.translate(-10, 0)
+            self.game.renderer.layout.offset[0] -= 10
+            self.game.hm.reload_all_units()
         if key == pygame.K_RIGHT:
-            self.game.renderer.ctx.translate(10, 0)
+            self.game.renderer.layout.offset[0] += 10
+            self.game.hm.reload_all_units()
         if key == pygame.K_UP:
-            self.game.renderer.ctx.translate(0, -10)
+            self.game.renderer.layout.offset[1] -= 10
+            self.game.hm.reload_all_units()
         if key == pygame.K_DOWN:
-            self.game.renderer.ctx.translate(0, 10)
+            self.game.renderer.layout.offset[1] += 10
+            self.game.hm.reload_all_units()
 
     def on_mouse_motion(self, pos, rel, buttons):
         for widget in self.game.widgets:
