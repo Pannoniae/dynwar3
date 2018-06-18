@@ -1,10 +1,15 @@
 import ctypes
+from typing import Tuple
 
 import cairo
+from pygame.rect import Rect
+
+
+def get_rect_by_size(upper_corner, size):
+    return Rect(*upper_corner, upper_corner[0] + size, upper_corner[1] + size)
 
 PyBUF_READ = 0x100
 PyBUF_WRITE = 0x200
-
 
 def get_cairo_surface(pygame_surface):
 

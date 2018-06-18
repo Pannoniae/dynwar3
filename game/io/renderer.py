@@ -15,6 +15,7 @@ class Renderer:
         self.game = game
         self.clock = pygame.time.Clock()
         self.layout = HexMapLayout(self.game.hm, 20, (100, 100))
+        self.layout.
     def draw(self, ctx, mouse_pos):
 
         ctx.set_source_rgba(0, 0, 0, 1)

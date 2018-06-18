@@ -2,7 +2,6 @@ from typing import Tuple
 
 from pygame.rect import Rect
 
-
 class Widget:
 
     def __init__(self, box: Rect, parent = None):

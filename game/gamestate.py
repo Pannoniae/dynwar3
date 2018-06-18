@@ -12,20 +12,21 @@ from game.widget import Widget
 class Game:
     def __init__(self, screen: pygame.Surface, surf: cairo.Surface):
 
-        self.hm = HexMap(10)
-        u = Infantry()
-        i = Hex(2, 2)
-        i.terrain = TerrainType.t_hll
-        i.set_unit(u)
-        self.hm.set_hex((2, 2), i)
-
-
         self.surf = surf
         self.renderer = Renderer(screen, self)
         self.event_handler = EventHandler(self)
         self.clock = pygame.time.Clock()
         self.widgets = []
         self._a = self.add_widget(Widget(Rect(1, 1, 100, 100)))
+
+        self.hm = HexMap(10)
+        i = Hex(2, 2)
+        u = Infantry(self, i)
+        i.terrain = TerrainType.t_hll
+        i.set_unit(u)
+        self.hm.set_hex((2, 2), i)
+
+
         while 1:
             self.main_loop()
 
