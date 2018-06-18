@@ -22,14 +22,20 @@ class Game:
 
         self.hm = HexMap(10)
         i = Hex(2, 2)
+        i2 = Hex(3, 2)
         u = Infantry(self, i)
+        u2 = Infantry(self, i2)
         i.terrain = TerrainType.t_hll
+        i2.terrain = TerrainType.t_hll
         i.set_unit(u)
+        i2.set_unit(u2)
         self.hm.set_hex((2, 2), i)
+        self.hm.set_hex((3, 2), i2)
 
         self.renderer = Renderer(screen, self)
 
         u.reload()
+        u2.reload()
 
         while 1:
             self.main_loop()
@@ -44,10 +50,9 @@ class Game:
         #print(self.clock.get_fps())
 
     def remove_widget(self, widget: Widget):
-        for widget_ in self.widgets:
-            if widget_ == widget:
-                self.widgets.remove(widget_)
+                self.widgets.remove(widget)
 
     def add_widget(self, widget: Widget):
+        print('added widget ', widget)
         self.widgets.append(widget)
         return widget

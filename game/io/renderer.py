@@ -5,7 +5,6 @@ import cairo
 import pygame
 from game.hexmap import Hex, flat_hex_corner
 from game.layout import HexMapLayout
-from game.util import get_rect_by_size
 
 
 class Renderer:
@@ -43,9 +42,10 @@ class Renderer:
         for hex in units:
             ctx.set_source_surface(self.game.surf.create_from_png('data/inf.png'), *self.layout.get_hex_upper_corner(hex))
             ctx.paint()
-        self.reload()
         if self.game.debug:
             for widget in self.game.widgets:
+                print(widget)
+                print(self.game.widgets)
                 ctx.move_to(*widget.box.topleft)
                 ctx.set_source_rgba(*self.layout.EDGE_COLOR, 1)
                 for pos in ("topleft", "topright", "bottomright", "bottomleft"):

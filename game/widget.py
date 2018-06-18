@@ -2,24 +2,12 @@ from typing import Tuple
 
 from pygame.rect import Rect
 
-from game.util import get_rect_by_size
-
 class GameObject:
 
     def __init__(self, game):
         self.game = game
         self.widget = None
 
-    def reload(self):
-        if not self.widget:
-            self.widget = self.game.add_widget(
-                    Widget(get_rect_by_size(self.game.renderer.layout.get_hex_upper_corner(self.hex),
-                                            self.game.renderer.layout.size * 2), self))
-            self.game.add_widget(self.widget)
-
-        box = get_rect_by_size(self.game.renderer.layout.get_hex_upper_corner(self.hex),
-                               self.game.renderer.layout.size * 2)
-        self.widget.update(box)
 
 
 class Widget:
