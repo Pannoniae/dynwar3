@@ -65,3 +65,7 @@ class EventHandler(AbstractEventHandler):
             self.game.renderer.ctx.translate(0, -10)
         if key == pygame.K_DOWN:
             self.game.renderer.ctx.translate(0, 10)
+
+    def on_mouse_motion(self, pos, rel, buttons):
+        for widget in self.game.widgets:
+            widget.handle(pos)

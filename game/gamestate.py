@@ -11,17 +11,21 @@ from game.widget import Widget
 
 class Game:
     def __init__(self, screen: pygame.Surface, surf: cairo.Surface):
-        self.surf = surf
+
         self.hm = HexMap(10)
         u = Infantry()
         i = Hex(2, 2)
         i.terrain = TerrainType.t_hll
         i.set_unit(u)
         self.hm.set_hex((2, 2), i)
+
+
+        self.surf = surf
         self.renderer = Renderer(screen, self)
         self.event_handler = EventHandler(self)
         self.clock = pygame.time.Clock()
-        self._a = Widget(Rect(1, 1, 100, 100))
+        self.widgets = []
+        self._a = self.add_widget(Widget(Rect(1, 1, 100, 100)))
         while 1:
             self.main_loop()
 
@@ -32,3 +36,7 @@ class Game:
         pygame.display.update()
         self.clock.tick()
         print(self.clock.get_fps())
+
+    def add_widget(self, widget: Widget):
+        self.widgets.append(widget)
+        return widget
