@@ -1,3 +1,4 @@
+import cairo
 import pygame
 
 from game.eventhandler import EventHandler
@@ -7,7 +8,8 @@ from game.unit import Infantry
 
 
 class Game:
-    def __init__(self, screen: pygame.Surface):
+    def __init__(self, screen: pygame.Surface, surf: cairo.Surface):
+        self.surf = surf
         self.hm = HexMap(10)
         u = Infantry()
         i = Hex(2, 2)
@@ -15,7 +17,10 @@ class Game:
         i.set_unit(u)
         self.hm.set_hex((2, 2), i)
         self.renderer = Renderer(screen, self)
-        self.event_handler = EventHandler()
+        self.event_handler = EventHandler(self)
+        self.clock = pygame.time.Clock()
+        while 1:
+            self.main_loop()
 
     def main_loop(self):
         self.event_handler.handle_events()

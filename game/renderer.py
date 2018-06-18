@@ -3,16 +3,14 @@ from typing import List
 
 import cairo
 import pygame
-from game.app import cairo_surface
-from game.game import Game
 from game.hexmap import Hex, flat_hex_corner
 from game.layout import HexMapLayout
 
 
 class Renderer:
 
-    def __init__(self, screen: pygame.Surface, game: Game):
-        self.ctx = cairo.Context(cairo_surface)
+    def __init__(self, screen: pygame.Surface, game):
+        self.ctx = cairo.Context(game.surf)
         self.screen = screen
         self.game = game
         self.clock = pygame.time.Clock()
@@ -40,7 +38,7 @@ class Renderer:
             if hex.has_unit():
                 units.append(hex)
         for hex in units:
-            ctx.set_source_surface(cairo_surface.create_from_png('data/inf.png'), *self.layout.get_hex_upper_corner(hex))
+            ctx.set_source_surface(self.game.surf.create_from_png('data/inf.png'), *self.layout.get_hex_upper_corner(hex))
             ctx.paint()
 
         if mouse_pos:

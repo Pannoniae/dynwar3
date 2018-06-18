@@ -126,7 +126,7 @@ class HexMap:
         return self.map[position]
 
 
-def flat_hex_corner(center: Hex, size, i):
+def flat_hex_corner(center: Hex, size: int, i: int):
     angle_deg = 60 * i
     angle_rad = pi / 180 * angle_deg
     return center.x + size * cos(angle_rad), center.y + size * sin(angle_rad)
