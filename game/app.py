@@ -2,15 +2,13 @@ import math
 import sys
 from typing import List
 
-import numpy
-
 import cairo
 import pygame
 
 from game.hexmap import flat_hex_corner, Hex, HexMap, TerrainType
 from game.layout import HexMapLayout
 from game.unit import Infantry
-from game.util import bgra_surf_to_rgba_string
+from game.util import get_cairo_surface
 
 width, height = 1920, 1080
 
@@ -47,11 +45,20 @@ def draw(ctx, mouse_pos):
 
 
 pygame.display.init()
-screen = pygame.display.set_mode((width, height), pygame.HWSURFACE | pygame.FULLSCREEN, 32)
+screen = pygame.display.set_mode((width, height), 0, 32)
 
-data = numpy.empty(width * height * 4, dtype = numpy.int8)
-cairo_surface: cairo.ImageSurface = cairo.ImageSurface.create_for_data(
-    data, cairo.FORMAT_ARGB32, width, height, width * 4)
+# Initialize pygame with 32-bit colors. This setting stores the pixels
+# in the format 0x00rrggbb.
+pygame.init()
+screen = pygame.display.set_mode((width, height), 0, 32)
+
+# Get a reference to the memory block storing the pixel data.
+pixels = pygame.surfarray.pixels2d(screen)
+
+# Set up a Cairo surface using the same memory block and the same pixel
+# format (Cairo's RGB24 format means that the pixels are stored as
+# 0x00rrggbb; i.e. only 24 bits are used and the upper 16 are 0).
+cairo_surface = get_cairo_surface(screen)
 hm = HexMap(10)
 u = Infantry()
 i = Hex(2, 2)
@@ -63,14 +70,8 @@ ctx = cairo.Context(cairo_surface)
 
 clock: pygame.time.Clock = pygame.time.Clock()
 while 1:
-    data_string = bgra_surf_to_rgba_string(cairo_surface)
-    pygame_surface = pygame.image.frombuffer(
-            data_string, (width, height), 'RGBA')
 
     for e in pygame.event.get():
-        #if e.type == pygame.MOUSEMOTION:
-        pos = pygame.mouse.get_pos()
-        draw(ctx, pos)
         if e.type == pygame.KEYDOWN:
             if e.key == pygame.K_LEFT:
                 layout.offset[0] -= 10
@@ -82,7 +83,8 @@ while 1:
                 layout.offset[1] += 10
         if e.type == pygame.QUIT:
             sys.exit()
-        screen.blit(pygame_surface, (0, 0))
-        pygame.display.update()
+    pos = pygame.mouse.get_pos()
+    draw(ctx, pos)
+    pygame.display.update()
     clock.tick()
     print(clock.get_fps())

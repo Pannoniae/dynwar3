@@ -4,14 +4,15 @@
     <session id="-1116783055">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="8991" />
-          <entry key="txt" value="873" />
+          <entry key="dummy" value="4" />
+          <entry key="py" value="9525" />
+          <entry key="txt" value="904" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="873" />
-          <entry key="Python" value="8991" />
+          <entry key="PLAIN_TEXT" value="908" />
+          <entry key="Python" value="9525" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -19,16 +20,18 @@
           <entry key="gitignore" value="2" />
           <entry key="log" value="1" />
           <entry key="nodeids" value="1" />
-          <entry key="pstat" value="7" />
-          <entry key="py" value="81" />
+          <entry key="png" value="1" />
+          <entry key="pstat" value="8" />
+          <entry key="py" value="95" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Git file" value="2" />
+          <entry key="Image" value="1" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Profiler Session" value="7" />
-          <entry key="Python" value="80" />
+          <entry key="Profiler Session" value="8" />
+          <entry key="Python" value="94" />
           <entry key="Scratch" value="1" />
           <entry key="UML" value="1" />
         </counts>
