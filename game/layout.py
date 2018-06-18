@@ -17,6 +17,7 @@ class HexMapLayout:
             offset = list(offset)
         self.size = size
         self.offset = offset
+        self.hexmap = hexmap
 
     def get_hex_position(self, hex: Hex) -> Tuple[int, int]:
         x = self.size * (3 / 2 * hex.x)

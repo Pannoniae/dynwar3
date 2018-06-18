@@ -40,6 +40,7 @@ class Game:
         self.renderer.draw(self.renderer.ctx, pos)
         pygame.display.update()
         self.clock.tick()
+
         #print(self.clock.get_fps())
 
     def remove_widget(self, widget: Widget):

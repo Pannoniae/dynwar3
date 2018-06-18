@@ -5,14 +5,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="9" />
-          <entry key="py" value="14432" />
-          <entry key="txt" value="1396" />
+          <entry key="py" value="15165" />
+          <entry key="txt" value="1409" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="1405" />
-          <entry key="Python" value="14432" />
+          <entry key="PLAIN_TEXT" value="1418" />
+          <entry key="Python" value="15165" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -21,8 +21,8 @@
           <entry key="log" value="1" />
           <entry key="nodeids" value="1" />
           <entry key="png" value="1" />
-          <entry key="pstat" value="13" />
-          <entry key="py" value="168" />
+          <entry key="pstat" value="14" />
+          <entry key="py" value="183" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -30,8 +30,8 @@
           <entry key="Git file" value="2" />
           <entry key="Image" value="1" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Profiler Session" value="13" />
-          <entry key="Python" value="167" />
+          <entry key="Profiler Session" value="14" />
+          <entry key="Python" value="182" />
           <entry key="Scratch" value="1" />
           <entry key="UML" value="1" />
         </counts>

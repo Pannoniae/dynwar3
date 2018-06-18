@@ -6,7 +6,7 @@ from pygame.rect import Rect
 
 
 def get_rect_by_size(upper_corner, size):
-    return Rect(*upper_corner, upper_corner[0] + size, upper_corner[1] + size)
+    return Rect(*upper_corner, size, size)
 
 PyBUF_READ = 0x100
 PyBUF_WRITE = 0x200
