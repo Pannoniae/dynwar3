@@ -15,9 +15,9 @@ class Renderer:
         self.game = game
         self.clock = pygame.time.Clock()
         self.layout = HexMapLayout(self.game.hm, 20, (100, 100))
-    def draw(self, ctx, mouse_pos):
+    def draw(self, mouse_pos):
 
-        #ctx = self.ctx
+        ctx = self.ctx
 
         ctx.set_source_rgba(0, 0, 0, 1)
         ctx.paint()
@@ -36,22 +36,22 @@ class Renderer:
             for corner in range(0, 7):
                 x, y = flat_hex_corner(Hex(*self.layout.get_hex_position(hex)), self.layout.size, corner)
                 ctx.line_to(x, y)
-            ctx.stroke()
             if hex.has_unit():
                 units.append(hex)
+            ctx.stroke()
+
         for hex in units:
             ctx.set_source_surface(self.game.surf.create_from_png('data/inf.png'), *self.layout.get_hex_upper_corner(hex))
             ctx.paint()
+
         if self.game.debug:
             for widget in self.game.widgets:
-                print(widget)
-                print(self.game.widgets)
                 ctx.move_to(*widget.box.topleft)
                 ctx.set_source_rgba(*self.layout.EDGE_COLOR, 1)
                 for pos in ("topleft", "topright", "bottomright", "bottomleft"):
                     ctx.line_to(*getattr(widget.box, pos))
                 ctx.close_path()
-                ctx.stroke()
+            ctx.stroke()
 
         if mouse_pos:
             ctx.set_source_rgba(1, 0, 0, 1)
@@ -59,7 +59,5 @@ class Renderer:
             ctx.stroke()
 
     def reload(self):
-        #self.layout.hexmap.reload_all_units()
-
         for widget in self.game.widgets:
             widget.parent.reload()

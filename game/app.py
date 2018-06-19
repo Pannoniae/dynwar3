@@ -5,14 +5,15 @@ import pygame
 from game.gamestate import Game
 from game.util import get_cairo_surface
 
-width, height = 1920, 1080
+#width, height = 1920, 1080
+width, height = 800, 600
 
 pygame.init()
 screen = pygame.display.set_mode((width, height), 0, 32)
 cairo_surface = get_cairo_surface(screen)
 
 try:
-    sys.argv[1]
+    _ = sys.argv[1]
     debug = True
 except IndexError:
     debug = False

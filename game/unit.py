@@ -15,7 +15,7 @@ class Unit(GameObject):
     def reload(self):
         if not self.widget:
             self.widget = self.game.add_widget(
-                    Widget(get_rect_by_size(self.game.renderer.layout.get_hex_upper_corner(self.hex),
+                    Widget(self.game, get_rect_by_size(self.game.renderer.layout.get_hex_upper_corner(self.hex),
                                             self.game.renderer.layout.size * 2), self))
             self.game.add_widget(self.widget)
         else:

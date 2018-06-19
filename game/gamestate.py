@@ -19,6 +19,7 @@ class Game:
         self.event_handler = EventHandler(self)
         self.clock = pygame.time.Clock()
         self.widgets = []
+        self.active_widget = None
 
         self.hm = HexMap(10)
         i = Hex(2, 2)
@@ -37,22 +38,21 @@ class Game:
         u.reload()
         u2.reload()
 
+        self.ctr = 0
         while 1:
             self.main_loop()
 
     def main_loop(self):
         self.event_handler.handle_events()
         pos = pygame.mouse.get_pos()
-        self.renderer.draw(self.renderer.ctx, pos)
+        self.renderer.draw(pos)
         pygame.display.update()
         self.clock.tick()
-
-        #print(self.clock.get_fps())
+        #    print(self.clock.get_fps())
 
     def remove_widget(self, widget: Widget):
-                self.widgets.remove(widget)
+        self.widgets.remove(widget)
 
     def add_widget(self, widget: Widget):
-        print('added widget ', widget)
         self.widgets.append(widget)
         return widget
