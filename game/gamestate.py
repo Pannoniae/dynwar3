@@ -1,6 +1,5 @@
 import cairo
 import pygame
-from pygame.rect import Rect
 
 from game.io.eventhandler import EventHandler
 from game.hexmap import HexMap, Hex, TerrainType
@@ -19,7 +18,7 @@ class Game:
         self.event_handler = EventHandler(self)
         self.clock = pygame.time.Clock()
         self.widgets = []
-        self.active_widget = None
+        self.active_widget: Widget = None
 
         self.hm = HexMap(10)
         i = Hex(2, 2)
@@ -48,7 +47,7 @@ class Game:
         self.renderer.draw(pos)
         pygame.display.update()
         self.clock.tick()
-        #    print(self.clock.get_fps())
+        #print(self.clock.get_fps())
 
     def remove_widget(self, widget: Widget):
         self.widgets.remove(widget)
