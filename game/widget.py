@@ -26,7 +26,7 @@ class Widget:
         self.box = box
 
     def handle(self, pos: Tuple[int, int]):
-        if self.active and self.game.active_widget is not None and self.game.active_widget != self:
+        if self.active and self.game.active_widget is None:
             self.on_exit()
         if not self.is_in_box(pos) and self.game.active_widget is not None and self.game.active_widget == self:
             self.on_exit()
@@ -36,12 +36,12 @@ class Widget:
     def on_enter(self):
         self.game.active_widget = self
         self.active = True
-        print('entered', self, self.game.active_widget)
+        print('entered', self.game.active_widget)
 
     def on_exit(self):
         self.game.active_widget = None
         self.active = False
-        print('exited', self, self.game.active_widget)
+        print('exited', self.game.active_widget)
 
     def __eq__(self, other):
         return self.box == other.box
