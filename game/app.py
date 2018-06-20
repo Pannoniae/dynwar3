@@ -13,8 +13,7 @@ screen = pygame.display.set_mode((width, height), 0, 32)
 cairo_surface = get_cairo_surface(screen)
 
 try:
-    _ = sys.argv[1]
-    debug = True
+    debug = sys.argv[1] == 'debug'
 except IndexError:
     debug = False
 print(f'Debug mode: {debug}')

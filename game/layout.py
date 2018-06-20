@@ -6,10 +6,6 @@ from game.hexmap import HexMap, Hex, TerrainType
 
 class HexMapLayout:
 
-    EDGE_COLOR = 0.8, 0.6, 0.6
-    colors = {TerrainType.t_clr: (0.5, 0.3, 0.1),
-              TerrainType.t_hll: (0.7, 0.2, 0.3)}
-
     def __init__(self, hexmap: HexMap, size: int = 20, offset: Optional[tuple] = None):
         if offset is None:
             offset = (0, 0)

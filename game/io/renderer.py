@@ -3,11 +3,15 @@ from typing import List
 
 import cairo
 import pygame
-from game.hexmap import Hex, flat_hex_corner
+from game.hexmap import Hex, flat_hex_corner, TerrainType
 from game.layout import HexMapLayout
 
 
 class Renderer:
+    colors = {
+        'edge': (0.8, 0.4, 0),
+        TerrainType.t_clr: (0.5, 0.3, 0.1),
+        TerrainType.t_hll: (0.7, 0.2, 0.3)}
 
     def __init__(self, screen: pygame.Surface, game):
         self.ctx = cairo.Context(game.surf)
@@ -26,13 +30,13 @@ class Renderer:
         ctx.set_source_rgba(0.6, 0, 0.4, 1)
         units: List[Hex] = []
         for hex in self.game.hexmap:
-            r, g, b = self.layout.colors[hex.terrain]
+            r, g, b = self.colors[hex.terrain]
             ctx.set_source_rgba(r, g, b, 1)
             for corner in range(0, 7):
                 x, y = flat_hex_corner(Hex(*self.layout.get_hex_position(hex)), self.layout.size, corner)
                 ctx.line_to(x, y)
             ctx.fill()
-            ctx.set_source_rgba(*self.layout.EDGE_COLOR, 1)
+            ctx.set_source_rgba(*self.colors['edge'], 1)
             for corner in range(0, 7):
                 x, y = flat_hex_corner(Hex(*self.layout.get_hex_position(hex)), self.layout.size, corner)
                 ctx.line_to(x, y)
@@ -47,7 +51,7 @@ class Renderer:
         if self.game.debug:
             for widget in self.game.widgets:
                 ctx.move_to(*widget.box.topleft)
-                ctx.set_source_rgba(*self.layout.EDGE_COLOR, 1)
+                ctx.set_source_rgba(*self.colors['edge'], 1)
                 for pos in ("topleft", "topright", "bottomright", "bottomleft"):
                     ctx.line_to(*getattr(widget.box, pos))
                 ctx.close_path()

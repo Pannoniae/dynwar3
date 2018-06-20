@@ -20,11 +20,10 @@ class Game:
         self.widgets = []
         self.active_widget: Widget = None
 
-        self.hexmap: HexMap
+        self.hexmap: HexMap = None
 
         self.loader = SaveGameLoader(self, 'data/save.yml')
         self.loader.load_game()
-        print(self.hexmap)
 
         self.renderer = Renderer(screen, self)
 
