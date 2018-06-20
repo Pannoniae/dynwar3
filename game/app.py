@@ -18,5 +18,4 @@ try:
 except IndexError:
     debug = False
 print(f'Debug mode: {debug}')
-
 game = Game(screen, cairo_surface, debug = debug)

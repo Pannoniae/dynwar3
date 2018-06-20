@@ -16,6 +16,8 @@ class Game:
     def __new__(cls, *args, **kwargs):
         if cls._inst is not None:
             logging.warning('More than one Game() instance has been instantiated. This is probably a programming error.')
+        cls._inst = object.__new__(cls)
+        return cls._inst
 
     def __init__(self, screen: pygame.Surface, surf: cairo.Surface, debug = False):
 
