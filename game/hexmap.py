@@ -141,8 +141,6 @@ class HexMap:
         self.map[position] = hex
 
     def get_hex(self, position: tuple):
-        print(self.map[position], Hex(*position), position)
-        print(self.map)
         logging.warning('Deprecated, just construct a Hex directly, because it is a singleton.\n'
                         f'To prove this, {self.map[position]} is {Hex(*position)}. It is {self.map[position] is Hex(*position)}')
         return self.map[position]
