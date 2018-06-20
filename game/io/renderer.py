@@ -33,19 +33,19 @@ class Renderer:
             r, g, b = self.colors[hex.terrain]
             ctx.set_source_rgba(r, g, b, 1)
             for corner in range(0, 7):
-                x, y = self.layout.flat_hex_corner(Hex(*self.layout.get_hex_position(hex)), self.layout.size, corner)
+                x, y = self.layout.flat_hex_corner(self.layout.get_hex_position(hex.pos), self.layout.size, corner)
                 ctx.line_to(x, y)
             ctx.fill()
             ctx.set_source_rgba(*self.colors['edge'], 1)
             for corner in range(0, 7):
-                x, y = self.layout.flat_hex_corner(Hex(*self.layout.get_hex_position(hex)), self.layout.size, corner)
+                x, y = self.layout.flat_hex_corner(self.layout.get_hex_position(hex.pos), self.layout.size, corner)
                 ctx.line_to(x, y)
             if hex.has_unit():
                 units.append(hex)
             ctx.stroke()
 
         for hex in units:
-            ctx.set_source_surface(self.game.surf.create_from_png('data/inf.png'), *self.layout.get_hex_upper_corner(hex))
+            ctx.set_source_surface(self.game.surf.create_from_png('data/inf.png'), *self.layout.get_hex_upper_corner(hex.pos))
             ctx.paint()
         if self.game.debug:
             for widget in self.game.widgets:

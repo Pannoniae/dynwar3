@@ -33,20 +33,22 @@ class Unit(GameObject):
     def reload(self):
         if not self.widget:
             self.widget = self.game.add_widget(
-                    Widget(self.game, get_rect_by_size(self.game.renderer.layout.get_hex_upper_corner(self.hex),
+                    Widget(self.game, get_rect_by_size(self.game.renderer.layout.get_hex_upper_corner((self.hex.x, self.hex.y)),
                                             self.game.renderer.layout.size * 2), self))
         else:
-            box = get_rect_by_size(self.game.renderer.layout.get_hex_upper_corner(self.hex),
+            box = get_rect_by_size(self.game.renderer.layout.get_hex_upper_corner((self.hex.x, self.hex.y)),
                                    self.game.renderer.layout.size * 2)
             self.widget.update(box)
 
     def on_click(self):
-        if self.game.active_unit is None:
+        attacker = self.game.active_unit
+
+        if attacker is None:
             self.game.active_unit = self
-        elif self.game.active_unit is self:
+        elif attacker is self:
             return
-        elif self.game.active_unit is not self:
-            self.game.active_unit.attack(self)
+        elif attacker is not self:
+            attacker.attack(self)
             self.game.active_unit = None
 
 class Infantry(Unit):

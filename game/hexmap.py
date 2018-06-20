@@ -39,6 +39,10 @@ class Hex:
         self.terrain = terrain
         self.unit: Optional[Unit] = None
 
+    @property
+    def pos(self):
+        return self.x, self.y
+
     def get_unit(self):
         if self.unit is None:
             raise UnitNotFound('No unit in this hex')
