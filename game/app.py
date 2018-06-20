@@ -10,6 +10,7 @@ width, height = 800, 600
 
 pygame.init()
 screen = pygame.display.set_mode((width, height), 0, 32)
+pygame.display.set_caption('DynWar v0.1-dev', 'DynWar')
 cairo_surface = get_cairo_surface(screen)
 
 try:

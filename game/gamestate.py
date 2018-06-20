@@ -1,3 +1,5 @@
+import logging
+
 import cairo
 import pygame
 
@@ -9,6 +11,12 @@ from game.widget import Widget
 
 
 class Game:
+
+    _inst = None
+    def __new__(cls, *args, **kwargs):
+        if cls._inst is not None:
+            logging.warning('More than one Game() instance has been instantiated. This is probably a programming error.')
+
     def __init__(self, screen: pygame.Surface, surf: cairo.Surface, debug = False):
 
         self.debug = debug
