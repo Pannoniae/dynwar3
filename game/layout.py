@@ -1,7 +1,8 @@
 import math
+from math import pi, cos, sin
 from typing import Optional, Tuple
 
-from game.hexmap import HexMap, Hex, TerrainType
+from game.hexmap import HexMap, Hex
 
 
 class HexMapLayout:
@@ -43,10 +44,14 @@ class HexMapLayout:
         hex2 = _cube_to_axial(cube)
         return Hex(*hex2)
 
-
     def get_containing_hex_center(self, position: tuple) -> Tuple[int, int]:
         hex = self.pixel_to_hex(position)
         return self.get_hex_position(hex)
+
+    def flat_hex_corner(self, center: Hex, size: int, i: int):
+        angle_deg = 60 * i
+        angle_rad = pi / 180 * angle_deg
+        return center.x + size * cos(angle_rad), center.y + size * sin(angle_rad)
 
 def _cube_round(cube):
     rx = round(cube[0])

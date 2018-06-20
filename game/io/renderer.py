@@ -3,7 +3,7 @@ from typing import List
 
 import cairo
 import pygame
-from game.hexmap import Hex, flat_hex_corner, TerrainType
+from game.hexmap import Hex, TerrainType
 from game.layout import HexMapLayout
 
 
@@ -33,12 +33,12 @@ class Renderer:
             r, g, b = self.colors[hex.terrain]
             ctx.set_source_rgba(r, g, b, 1)
             for corner in range(0, 7):
-                x, y = flat_hex_corner(Hex(*self.layout.get_hex_position(hex)), self.layout.size, corner)
+                x, y = self.layout.flat_hex_corner(Hex(*self.layout.get_hex_position(hex)), self.layout.size, corner)
                 ctx.line_to(x, y)
             ctx.fill()
             ctx.set_source_rgba(*self.colors['edge'], 1)
             for corner in range(0, 7):
-                x, y = flat_hex_corner(Hex(*self.layout.get_hex_position(hex)), self.layout.size, corner)
+                x, y = self.layout.flat_hex_corner(Hex(*self.layout.get_hex_position(hex)), self.layout.size, corner)
                 ctx.line_to(x, y)
             if hex.has_unit():
                 units.append(hex)

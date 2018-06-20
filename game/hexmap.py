@@ -1,4 +1,3 @@
-from math import cos, sin, pi
 from typing import Optional
 
 from game.unit import Unit
@@ -142,9 +141,3 @@ class HexMap:
 
     def get_hex(self, position: tuple):
         return self.map[position]
-
-
-def flat_hex_corner(center: Hex, size: int, i: int):
-    angle_deg = 60 * i
-    angle_rad = pi / 180 * angle_deg
-    return center.x + size * cos(angle_rad), center.y + size * sin(angle_rad)
