@@ -18,7 +18,7 @@ class Renderer:
         self.screen = screen
         self.game = game
         self.clock = pygame.time.Clock()
-        self.layout = HexMapLayout(self.game.hexmap, 32, (100, 100))
+        self.layout = HexMapLayout(32, (100, 100))
     def draw(self, mouse_pos):
 
         ctx = self.ctx
@@ -60,6 +60,7 @@ class Renderer:
             ctx.set_source_rgba(1, 0, 0, 1)
             ctx.arc(*self.layout.get_containing_hex_center(mouse_pos), self.layout.size / 4, 0, math.pi * 2)
             ctx.stroke()
+
 
     def reload(self):
         for widget in self.game.widgets:

@@ -2,19 +2,18 @@ import math
 from math import pi, cos, sin
 from typing import Optional, Tuple
 
-from game.hexmap import HexMap, Hex
+from game.hexmap import Hex
 
 
 class HexMapLayout:
 
-    def __init__(self, hexmap: HexMap, size: int = 20, offset: Optional[tuple] = None):
+    def __init__(self, size: int = 20, offset: Optional[tuple] = None):
         if offset is None:
             offset = (0, 0)
         if type(offset) == tuple:
             offset = list(offset)
         self.size = size
         self.offset = offset
-        self.hexmap = hexmap
 
     def get_hex_position(self, hex: Hex) -> Tuple[int, int]:
         x = self.size * (3 / 2 * hex.x)

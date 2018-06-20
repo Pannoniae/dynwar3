@@ -30,6 +30,7 @@ class SaveGameLoader(Loader):
     def parse_game(self):
         x, y = self.save['size']['x'], self.save['size']['y']
         self.game.hexmap = HexMap(x, y)
+
         for index, row in enumerate(self.save['terrain_map']):
             for index2, _hex in enumerate(list(row)):
                 if _hex == 'c':
@@ -38,12 +39,13 @@ class SaveGameLoader(Loader):
                     hex = Hex(index2, index, TerrainType.t_hll)
                 else:
                     raise ParseError('Illegal terrain type')
+
                 self.game.hexmap.set_hex((index2, index), hex)
 
         for _unit in self.save['units']:
             if self.save['units'][_unit]['type'] == 'inf':
                 _pos = eval(_unit)
-                hex = Hex(*_pos)
+                hex = self.game.hexmap.get_hex(_pos)
                 unit = Infantry(self.game, hex)
                 self.game.hexmap.set_unit(hex, unit)
             else:

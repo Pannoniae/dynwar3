@@ -7,11 +7,28 @@ class Unit(GameObject):
         super().__init__(game)
         self.game = game
         self.hex = hex
+
+        self.hp = 10
+
         self.reload()
 
     def move(self, direction):
         self.game.hm.move_unit(self, direction)
         self.reload()
+
+    def can_attack(self, other):
+        if not self.game.hexmap.is_adjacent(self.hex, other.hex):
+            return False
+        else:
+            return True
+
+    def attack(self, other):
+        if not self.can_attack(other):
+            return
+
+        # DUMMY
+        other.hp -= 2
+        self.hp -= 1
 
     def reload(self):
         if not self.widget:

@@ -37,12 +37,10 @@ class Widget:
     def on_enter(self):
         self.game.active_widget = self
         self.active = True
-        print('entered', self.game.active_widget)
 
     def on_exit(self):
         self.game.active_widget = None
         self.active = False
-        print('exited', self.game.active_widget)
 
     def __eq__(self, other):
         return self.box == other.box

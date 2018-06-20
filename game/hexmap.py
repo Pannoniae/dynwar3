@@ -31,17 +31,6 @@ class UnitNotFound(Exception):
 class Hex:
 
     # Just a singleton, but we like to write unreadable code
-    _insts = {}
-    def __new__(cls, *args, **kwargs):
-        x, y, *rest = args
-        if (x, y) not in cls._insts.keys():
-            cls._insts[(x, y)] = object.__new__(cls)
-        return cls._insts[(x, y)]
-
-    @classmethod
-    def print_all_instances(cls):
-        logging.debug(cls._insts)
-        logging.info(f'There are {len(cls._insts)} instances of Hex created.')
 
     def __init__(self, x: int, y: int, terrain = TerrainType.t_clr):
         """ Are you surprised? """
@@ -125,6 +114,9 @@ class HexMap:
     def get_neighbor(self, hex: Hex, direction):
         return hex + self.neighbors[direction]
 
+    def is_adjacent(self, one: Hex, other: Hex):
+        return self.distance(one, other) == 1
+
     @staticmethod
     def get_hexes_in_range(hex: Hex, n: int):
         for x in range(-n, n+1):
@@ -146,6 +138,4 @@ class HexMap:
         self.map[position] = hex
 
     def get_hex(self, position: tuple):
-        logging.warning('Deprecated, just construct a Hex directly, because it is a singleton.\n'
-                        f'To prove this, {self.map[position]} is {Hex(*position)}. It is {self.map[position] is Hex(*position)}')
         return self.map[position]
