@@ -43,7 +43,7 @@ class SaveGameLoader(Loader):
         for _unit in self.save['units']:
             if self.save['units'][_unit]['type'] == 'inf':
                 _pos = eval(_unit)
-                hex = self.game.hexmap.get_hex(_pos)
+                hex = Hex(*_pos)
                 unit = Infantry(self.game, hex)
                 self.game.hexmap.set_unit(hex, unit)
             else:

@@ -38,6 +38,11 @@ class Hex:
             cls._insts[(x, y)] = object.__new__(cls)
         return cls._insts[(x, y)]
 
+    @classmethod
+    def print_all_instances(cls):
+        logging.debug(cls._insts)
+        logging.info(f'There are {len(cls._insts)} instances of Hex created.')
+
     def __init__(self, x: int, y: int, terrain = TerrainType.t_clr):
         """ Are you surprised? """
         self.x = x
