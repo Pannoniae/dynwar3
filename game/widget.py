@@ -26,6 +26,7 @@ class Widget:
         self.box = box
 
     def handle(self, pos: Tuple[int, int]):
+        """ Have to refactor this, this is a mess due to the bandaids fixing the bugs """
         if self.active and self.game.active_widget is None:
             self.on_exit()
         if not self.is_in_box(pos) and self.game.active_widget is not None and self.game.active_widget == self:

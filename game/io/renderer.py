@@ -14,7 +14,7 @@ class Renderer:
         self.screen = screen
         self.game = game
         self.clock = pygame.time.Clock()
-        self.layout = HexMapLayout(self.game.hm, 20, (100, 100))
+        self.layout = HexMapLayout(self.game.hexmap, 20, (100, 100))
     def draw(self, mouse_pos):
 
         ctx = self.ctx
@@ -25,7 +25,7 @@ class Renderer:
         ctx.set_line_width(1)
         ctx.set_source_rgba(0.6, 0, 0.4, 1)
         units: List[Hex] = []
-        for hex in self.game.hm:
+        for hex in self.game.hexmap:
             r, g, b = self.layout.colors[hex.terrain]
             ctx.set_source_rgba(r, g, b, 1)
             for corner in range(0, 7):

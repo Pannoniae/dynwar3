@@ -2,9 +2,9 @@ import cairo
 import pygame
 
 from game.io.eventhandler import EventHandler
-from game.hexmap import HexMap, Hex, TerrainType
+from game.hexmap import HexMap
+from game.io.loader import SaveGameLoader
 from game.io.renderer import Renderer
-from game.unit import Infantry
 from game.widget import Widget
 
 
@@ -20,24 +20,14 @@ class Game:
         self.widgets = []
         self.active_widget: Widget = None
 
-        self.hm = HexMap(10)
-        i = Hex(2, 2)
-        i2 = Hex(3, 2)
-        u = Infantry(self, i)
-        u2 = Infantry(self, i2)
-        i.terrain = TerrainType.t_hll
-        i2.terrain = TerrainType.t_hll
-        i.set_unit(u)
-        i2.set_unit(u2)
-        self.hm.set_hex((2, 2), i)
-        self.hm.set_hex((3, 2), i2)
+        self.hexmap: HexMap
+
+        self.loader = SaveGameLoader(self, 'data/save.yml')
+        self.loader.load_game()
+        print(self.hexmap)
 
         self.renderer = Renderer(screen, self)
 
-        u.reload()
-        u2.reload()
-
-        self.ctr = 0
         while 1:
             self.main_loop()
 

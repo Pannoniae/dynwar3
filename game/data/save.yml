@@ -1,0 +1,8 @@
+size:
+  x: 3
+  y: 3
+
+terrain_map:
+  - 'chc'
+  - 'hhh'
+  - 'cch'

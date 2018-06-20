@@ -92,10 +92,13 @@ class HexMap:
                  Hex(-1, +1),
                  Hex(0, +1)]
 
-    def __init__(self, sizex: int, sizey: int = None):
+    def __init__(self, sizex: int, sizey: int = None, preinit = False):
         if not sizey:
             sizey = sizex
-        self.map = {(x, y): Hex(x, y) for x in range(sizex) for y in range(sizey)}
+        if preinit:
+            self.map = {(x, y): Hex(x, y) for x in range(sizex) for y in range(sizey)}
+        else:
+            self.map = {}
         self.sizex = sizex
         self.sizey = sizey
 
