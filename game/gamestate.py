@@ -3,7 +3,7 @@ import pygame
 
 from game.io.eventhandler import EventHandler
 from game.hexmap import HexMap
-from game.io.loader import SaveGameLoader
+from game.io.gameio import SaveGameLoader
 from game.io.renderer import Renderer
 from game.widget import Widget
 

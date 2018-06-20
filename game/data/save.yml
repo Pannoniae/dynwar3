@@ -1,11 +1,16 @@
 size:
-  x: 3
-  y: 4
+  x: 4
+  y: 3
 
 terrain_map:
-  - 'chc'
-  - 'hhh'
-  - 'cch'
-  - 'hhh'
+  - 'chch'
+  - 'hhhh'
+  - 'cchh'
 
+units:
+  2, 2:
+    type: inf
+
+  2, 1:
+    type: inf
 

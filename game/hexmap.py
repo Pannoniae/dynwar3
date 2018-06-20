@@ -109,6 +109,9 @@ class HexMap:
         for unit in self.get_all_units():
             unit.reload()
 
+    def set_unit(self, hex: Hex, unit: Unit):
+        hex.set_unit(unit)
+
     def get_all_units(self):
         for hex in self.map.values():
             if hex.unit:

@@ -5,17 +5,17 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Python Console" value="1" />
-          <entry key="dummy" value="9" />
-          <entry key="py" value="18487" />
-          <entry key="txt" value="1582" />
-          <entry key="yml" value="150" />
+          <entry key="dummy" value="26" />
+          <entry key="py" value="18971" />
+          <entry key="txt" value="1675" />
+          <entry key="yml" value="264" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="1591" />
-          <entry key="Python" value="18488" />
-          <entry key="YAML" value="150" />
+          <entry key="PLAIN_TEXT" value="1701" />
+          <entry key="Python" value="18972" />
+          <entry key="YAML" value="264" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -26,7 +26,7 @@
           <entry key="nodeids" value="1" />
           <entry key="png" value="1" />
           <entry key="pstat" value="14" />
-          <entry key="py" value="221" />
+          <entry key="py" value="230" />
           <entry key="yml" value="4" />
         </counts>
       </usages-collector>
@@ -36,7 +36,7 @@
           <entry key="Image" value="1" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="Profiler Session" value="14" />
-          <entry key="Python" value="220" />
+          <entry key="Python" value="229" />
           <entry key="Scratch" value="2" />
           <entry key="UML" value="1" />
           <entry key="YAML" value="4" />
