@@ -8,6 +8,15 @@ class GameObject:
         self.game = game
         self.widget = None
 
+    def on_enter(self):
+        pass
+
+    def on_exit(self):
+        pass
+
+    def on_click(self):
+        self.widget.on_click()
+
 
 
 class Widget:
@@ -34,6 +43,11 @@ class Widget:
         if (self.game.active_widget is None or self.game.active_widget != self) and self.is_in_box(pos) and not (self.game.active_widget is not None and self.game.active_widget.is_in_box(pos)):
             self.on_enter()
 
+    def click_handle(self, pos: Tuple[int, int]):
+        """ Handle clicking. """
+        if self.is_in_box(pos):
+            self.on_click()
+
     def on_enter(self):
         self.game.active_widget = self
         self.active = True
@@ -41,6 +55,9 @@ class Widget:
     def on_exit(self):
         self.game.active_widget = None
         self.active = False
+
+    def on_click(self):
+        print('clickity, clickity')
 
     def __eq__(self, other):
         return self.box == other.box

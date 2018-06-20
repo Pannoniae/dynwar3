@@ -35,7 +35,6 @@ class Unit(GameObject):
             self.widget = self.game.add_widget(
                     Widget(self.game, get_rect_by_size(self.game.renderer.layout.get_hex_upper_corner(self.hex),
                                             self.game.renderer.layout.size * 2), self))
-            self.game.add_widget(self.widget)
         else:
             box = get_rect_by_size(self.game.renderer.layout.get_hex_upper_corner(self.hex),
                                    self.game.renderer.layout.size * 2)

@@ -3,6 +3,12 @@ import sys
 
 import pygame
 
+LEFT_BUTTON = 1
+MIDDLE_BUTTON = 2
+RIGHT_BUTTON = 3
+SCROLL_UP = 4
+SCROLL_DOWN = 5
+
 
 class AbstractEventHandler:
 
@@ -18,6 +24,10 @@ class AbstractEventHandler:
                 self.on_quit()
             if e.type == pygame.MOUSEMOTION:
                 self.on_mouse_motion(e.pos, e.rel, e.buttons)
+            if e.type == pygame.MOUSEBUTTONDOWN:
+                self.on_mouse_press(e.pos, e.button)
+            if e.type == pygame.MOUSEBUTTONUP:
+                self.on_mouse_release(e.pos, e.button)
 
     def on_quit(self):
         pass
@@ -76,3 +86,8 @@ class EventHandler(AbstractEventHandler):
     def on_mouse_motion(self, pos, rel, buttons):
         for widget in self.game.widgets:
             widget.handle(pos)
+
+    def on_mouse_press(self, pos, button):
+        if button == LEFT_BUTTON:
+            for widget in self.game.widgets:
+                widget.click_handle(pos)
