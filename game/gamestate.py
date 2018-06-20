@@ -7,6 +7,7 @@ from game.io.eventhandler import EventHandler
 from game.hexmap import HexMap
 from game.io.gameio import SaveGameLoader
 from game.io.renderer import Renderer
+from game.unit import Unit
 from game.widget import Widget
 
 
@@ -29,6 +30,7 @@ class Game:
         self.clock = pygame.time.Clock()
         self.widgets = []
         self.active_widget: Widget = None
+        self.active_unit: Unit = None
 
         self.hexmap: HexMap = None
 

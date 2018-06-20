@@ -40,5 +40,14 @@ class Unit(GameObject):
                                    self.game.renderer.layout.size * 2)
             self.widget.update(box)
 
+    def on_click(self):
+        if self.game.active_unit is None:
+            self.game.active_unit = self
+        elif self.game.active_unit is self:
+            return
+        elif self.game.active_unit is not self:
+            self.game.active_unit.attack(self)
+            self.game.active_unit = None
+
 class Infantry(Unit):
     pass

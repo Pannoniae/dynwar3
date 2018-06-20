@@ -8,15 +8,6 @@ class GameObject:
         self.game = game
         self.widget = None
 
-    def on_enter(self):
-        pass
-
-    def on_exit(self):
-        pass
-
-    def on_click(self):
-        self.widget.on_click()
-
 
 
 class Widget:
@@ -58,6 +49,7 @@ class Widget:
 
     def on_click(self):
         print('clickity, clickity')
+        self.parent.on_click()
 
     def __eq__(self, other):
         return self.box == other.box
