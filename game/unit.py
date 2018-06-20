@@ -7,6 +7,7 @@ class Unit(GameObject):
         super().__init__(game)
         self.game = game
         self.hex = hex
+        self.reload()
 
     def move(self, direction):
         self.game.hm.move_unit(self, direction)

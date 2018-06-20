@@ -22,10 +22,11 @@ class Game:
 
         self.hexmap: HexMap = None
 
+        self.renderer = Renderer(screen, self)
+
         self.loader = SaveGameLoader(self, 'data/save.yml')
         self.loader.load_game()
 
-        self.renderer = Renderer(screen, self)
 
         while 1:
             self.main_loop()

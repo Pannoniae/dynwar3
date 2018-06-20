@@ -47,7 +47,6 @@ class Renderer:
         for hex in units:
             ctx.set_source_surface(self.game.surf.create_from_png('data/inf.png'), *self.layout.get_hex_upper_corner(hex))
             ctx.paint()
-
         if self.game.debug:
             for widget in self.game.widgets:
                 ctx.move_to(*widget.box.topleft)
