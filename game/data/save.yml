@@ -1,10 +1,11 @@
 size:
   x: 3
-  y: 3
+  y: 4
 
 terrain_map:
   - 'chc'
   - 'hhh'
   - 'cch'
+  - 'hhh'
 
 

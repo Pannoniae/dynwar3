@@ -9,7 +9,7 @@ class HexMapLayout:
     def __init__(self, hexmap: HexMap, size: int = 20, offset: Optional[tuple] = None):
         if offset is None:
             offset = (0, 0)
-        elif type(offset) == tuple:
+        if type(offset) == tuple:
             offset = list(offset)
         self.size = size
         self.offset = offset

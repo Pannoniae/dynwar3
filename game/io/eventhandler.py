@@ -60,16 +60,16 @@ class EventHandler(AbstractEventHandler):
 
     def on_key_press(self, unicode, key, mod):
         if key == pygame.K_LEFT:
-            self.game.renderer.layout.offset[0] -= 10
+            self.game.renderer.layout.offset[0] -= self.game.renderer.layout.size
             self.game.renderer.reload()
         if key == pygame.K_RIGHT:
-            self.game.renderer.layout.offset[0] += 10
+            self.game.renderer.layout.offset[0] += self.game.renderer.layout.size
             self.game.renderer.reload()
         if key == pygame.K_UP:
-            self.game.renderer.layout.offset[1] -= 10
+            self.game.renderer.layout.offset[1] -= self.game.renderer.layout.size
             self.game.renderer.reload()
         if key == pygame.K_DOWN:
-            self.game.renderer.layout.offset[1] += 10
+            self.game.renderer.layout.offset[1] += self.game.renderer.layout.size
             self.game.renderer.reload()
 
     def on_mouse_motion(self, pos, rel, buttons):

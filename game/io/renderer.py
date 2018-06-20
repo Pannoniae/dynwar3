@@ -9,7 +9,7 @@ from game.layout import HexMapLayout
 
 class Renderer:
     colors = {
-        'edge': (0.8, 0.4, 0),
+        'edge': (0.0, 0.5, 1.0),
         TerrainType.t_clr: (0.5, 0.3, 0.1),
         TerrainType.t_hll: (0.7, 0.2, 0.3)}
 
@@ -18,7 +18,7 @@ class Renderer:
         self.screen = screen
         self.game = game
         self.clock = pygame.time.Clock()
-        self.layout = HexMapLayout(self.game.hexmap, 20, (100, 100))
+        self.layout = HexMapLayout(self.game.hexmap, 32, (100, 100))
     def draw(self, mouse_pos):
 
         ctx = self.ctx
