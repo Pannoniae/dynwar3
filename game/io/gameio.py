@@ -38,7 +38,7 @@ class SaveGameLoader(Loader):
                     hex = Hex(index2, index, TerrainType.t_hll)
                 else:
                     raise ParseError('Illegal terrain type')
-                self.game.hexmap.set_hex((index, index2), hex)
+                self.game.hexmap.set_hex((index2, index), hex)
 
         for _unit in self.save['units']:
             if self.save['units'][_unit]['type'] == 'inf':

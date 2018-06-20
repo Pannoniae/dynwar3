@@ -1,3 +1,4 @@
+import logging
 from typing import Optional
 
 from game.unit import Unit
@@ -30,12 +31,12 @@ class UnitNotFound(Exception):
 class Hex:
 
     # Just a singleton, but we like to write unreadable code
-    #_insts = {}
-    #def __new__(cls, *args, **kwargs):
-    #    x, y, *rest = args
-    #    if (x, y) not in cls._insts.keys():
-    #        cls._insts[(x, y)] = object.__new__(cls)
-    #    return cls._insts[(x, y)]
+    _insts = {}
+    def __new__(cls, *args, **kwargs):
+        x, y, *rest = args
+        if (x, y) not in cls._insts.keys():
+            cls._insts[(x, y)] = object.__new__(cls)
+        return cls._insts[(x, y)]
 
     def __init__(self, x: int, y: int, terrain = TerrainType.t_clr):
         """ Are you surprised? """
@@ -112,7 +113,7 @@ class HexMap:
         hex.set_unit(unit)
 
     def get_all_units(self):
-        for hex in self.map.values():
+        for hex in self:
             if hex.unit:
                 yield hex.unit
 
@@ -140,4 +141,8 @@ class HexMap:
         self.map[position] = hex
 
     def get_hex(self, position: tuple):
+        print(self.map[position], Hex(*position), position)
+        print(self.map)
+        logging.warning('Deprecated, just construct a Hex directly, because it is a singleton.\n'
+                        f'To prove this, {self.map[position]} is {Hex(*position)}. It is {self.map[position] is Hex(*position)}')
         return self.map[position]
