@@ -5,7 +5,6 @@ import cairo
 import pygame
 from game.hexmap import Hex, TerrainType
 from game.layout import HexMapLayout
-from game.util import get_image_by_size
 
 
 class Renderer:
@@ -45,7 +44,9 @@ class Renderer:
             self.ctx.stroke()
 
         for hex in units:
-            get_image_by_size(self, 'data/inf.png', self.layout.get_hex_upper_corner(hex.pos))
+            self.ctx.set_source_surface(self.game.surf.create_from_png('data/inf.png'),
+                                            *self.layout.get_hex_upper_corner(hex.pos))
+            self.ctx.paint()
             self.ctx.move_to(*self.layout.get_hex_position(hex.pos))
             self.ctx.set_source_rgba(*self.colors['HP'], 1)
             self.ctx.set_line_width(5)
