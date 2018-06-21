@@ -8,6 +8,15 @@ from pygame.rect import Rect
 def get_rect_by_size(upper_corner, size):
     return Rect(*upper_corner, size, size)
 
+def get_image_by_size(renderer, img: str, pos: Tuple[float, float], size = 64):
+    size /= 2
+    scale_factor = renderer.layout.size / size
+    renderer.ctx.save()
+    renderer.ctx.scale(scale_factor, scale_factor)
+    renderer.ctx.set_source_surface(renderer.game.surf.create_from_png(img), *pos)
+    renderer.ctx.paint()
+    renderer.ctx.restore()
+
 PyBUF_READ = 0x100
 PyBUF_WRITE = 0x200
 

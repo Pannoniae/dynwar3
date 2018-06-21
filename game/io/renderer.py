@@ -5,6 +5,7 @@ import cairo
 import pygame
 from game.hexmap import Hex, TerrainType
 from game.layout import HexMapLayout
+from game.util import get_image_by_size
 
 
 class Renderer:
@@ -22,54 +23,51 @@ class Renderer:
         self.layout = HexMapLayout(32, (100, 100))
     def draw(self, mouse_pos):
 
-        ctx = self.ctx
+        self.ctx.set_source_rgba(0, 0, 0, 1)
+        self.ctx.paint()
 
-        ctx.set_source_rgba(0, 0, 0, 1)
-        ctx.paint()
-
-        ctx.set_line_width(1)
-        ctx.set_source_rgba(0.6, 0, 0.4, 1)
+        self.ctx.set_line_width(1)
+        self.ctx.set_source_rgba(0.6, 0, 0.4, 1)
         units: List[Hex] = []
         for hex in self.game.hexmap:
             r, g, b = self.colors[hex.terrain]
-            ctx.set_source_rgba(r, g, b, 1)
+            self.ctx.set_source_rgba(r, g, b, 1)
             for corner in range(0, 7):
                 x, y = self.layout.flat_hex_corner(self.layout.get_hex_position(hex.pos), self.layout.size, corner)
-                ctx.line_to(x, y)
-            ctx.fill()
-            ctx.set_source_rgba(*self.colors['edge'], 1)
+                self.ctx.line_to(x, y)
+            self.ctx.fill()
+            self.ctx.set_source_rgba(*self.colors['edge'], 1)
             for corner in range(0, 7):
                 x, y = self.layout.flat_hex_corner(self.layout.get_hex_position(hex.pos), self.layout.size, corner)
-                ctx.line_to(x, y)
+                self.ctx.line_to(x, y)
             if hex.has_unit():
                 units.append(hex)
-            ctx.stroke()
+            self.ctx.stroke()
 
         for hex in units:
-            ctx.set_source_surface(self.game.surf.create_from_png('data/inf.png'), *self.layout.get_hex_upper_corner(hex.pos))
-            ctx.paint()
-            ctx.move_to(*self.layout.get_hex_position(hex.pos))
-            ctx.set_source_rgba(*self.colors['HP'], 1)
-            ctx.set_line_width(5)
-            ctx.set_line_cap(cairo.LINE_CAP_ROUND)
-            ctx.rel_move_to(-(self.layout.size / 2), self.layout.size / 2)
-            ctx.rel_line_to(self.layout.size * hex.unit.hp / 10, 0)
-            ctx.stroke()
-        ctx.set_line_width(1)
-        ctx.set_line_cap(cairo.LINE_CAP_BUTT)
+            get_image_by_size(self, 'data/inf.png', self.layout.get_hex_upper_corner(hex.pos))
+            self.ctx.move_to(*self.layout.get_hex_position(hex.pos))
+            self.ctx.set_source_rgba(*self.colors['HP'], 1)
+            self.ctx.set_line_width(5)
+            self.ctx.set_line_cap(cairo.LINE_CAP_ROUND)
+            self.ctx.rel_move_to(-(self.layout.size / 2), self.layout.size / 2)
+            self.ctx.rel_line_to(self.layout.size * hex.unit.hp / 10, 0)
+            self.ctx.stroke()
+        self.ctx.set_line_width(1)
+        self.ctx.set_line_cap(cairo.LINE_CAP_BUTT)
         if self.game.debug:
             for widget in self.game.widgets:
-                ctx.move_to(*widget.box.topleft)
-                ctx.set_source_rgba(*self.colors['edge'], 1)
+                self.ctx.move_to(*widget.box.topleft)
+                self.ctx.set_source_rgba(*self.colors['edge'], 1)
                 for pos in ("topleft", "topright", "bottomright", "bottomleft"):
-                    ctx.line_to(*getattr(widget.box, pos))
-                ctx.close_path()
-            ctx.stroke()
+                    self.ctx.line_to(*getattr(widget.box, pos))
+                self.ctx.close_path()
+            self.ctx.stroke()
 
         if mouse_pos:
-            ctx.set_source_rgba(1, 0, 0, 1)
-            ctx.arc(*self.layout.get_containing_hex_center(mouse_pos), self.layout.size / 4, 0, math.pi * 2)
-            ctx.stroke()
+            self.ctx.set_source_rgba(1, 0, 0, 1)
+            self.ctx.arc(*self.layout.get_containing_hex_center(mouse_pos), self.layout.size / 4, 0, math.pi * 2)
+            self.ctx.stroke()
 
 
     def reload(self):

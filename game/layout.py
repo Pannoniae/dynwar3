@@ -2,8 +2,6 @@ import math
 from math import pi, cos, sin
 from typing import Optional, Tuple
 
-from game.hexmap import Hex
-
 
 class HexMapLayout:
 
