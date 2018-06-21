@@ -10,6 +10,7 @@ from game.layout import HexMapLayout
 class Renderer:
     colors = {
         'edge': (0.0, 0.5, 1.0),
+        'HP': (0.9, 0.3, 0.0),
         TerrainType.t_clr: (0.5, 0.3, 0.1),
         TerrainType.t_hll: (0.7, 0.2, 0.3)}
 
@@ -47,6 +48,15 @@ class Renderer:
         for hex in units:
             ctx.set_source_surface(self.game.surf.create_from_png('data/inf.png'), *self.layout.get_hex_upper_corner(hex.pos))
             ctx.paint()
+            ctx.move_to(*self.layout.get_hex_position(hex.pos))
+            ctx.set_source_rgba(*self.colors['HP'], 1)
+            ctx.set_line_width(5)
+            ctx.set_line_cap(cairo.LINE_CAP_ROUND)
+            ctx.rel_move_to(-(self.layout.size / 2), self.layout.size / 2)
+            ctx.rel_line_to(self.layout.size * hex.unit.hp / 10, 0)
+            ctx.stroke()
+        ctx.set_line_width(1)
+        ctx.set_line_cap(cairo.LINE_CAP_BUTT)
         if self.game.debug:
             for widget in self.game.widgets:
                 ctx.move_to(*widget.box.topleft)

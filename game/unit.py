@@ -30,6 +30,15 @@ class Unit(GameObject):
         other.hp -= 2
         self.hp -= 1
 
+        if self.hp <= 0:
+            self.destroy()
+        if other.hp <= 0:
+            other.destroy()
+
+    def destroy(self):
+        self.widget.destroy()
+        self.hex.unit = None
+
     def reload(self):
         if not self.widget:
             self.widget = self.game.add_widget(

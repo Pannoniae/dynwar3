@@ -25,6 +25,9 @@ class Widget:
     def update(self, box: Rect):
         self.box = box
 
+    def destroy(self):
+        self.game.remove_widget(self)
+
     def handle(self, pos: Tuple[int, int]):
         """ Have to refactor this, this is a mess due to the bandaids fixing the bugs """
         if self.active and self.game.active_widget is None:
@@ -48,7 +51,6 @@ class Widget:
         self.active = False
 
     def on_click(self):
-        print('clickity, clickity')
         self.parent.on_click()
 
     def __eq__(self, other):
