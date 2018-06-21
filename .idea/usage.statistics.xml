@@ -6,15 +6,15 @@
         <counts>
           <entry key="Python Console" value="1" />
           <entry key="dummy" value="26" />
-          <entry key="py" value="23300" />
-          <entry key="txt" value="2317" />
+          <entry key="py" value="23456" />
+          <entry key="txt" value="2324" />
           <entry key="yml" value="264" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="2343" />
-          <entry key="Python" value="23301" />
+          <entry key="PLAIN_TEXT" value="2350" />
+          <entry key="Python" value="23457" />
           <entry key="YAML" value="264" />
         </counts>
       </usages-collector>
@@ -25,8 +25,8 @@
           <entry key="log" value="1" />
           <entry key="nodeids" value="1" />
           <entry key="png" value="1" />
-          <entry key="pstat" value="15" />
-          <entry key="py" value="281" />
+          <entry key="pstat" value="17" />
+          <entry key="py" value="284" />
           <entry key="pyi" value="2" />
           <entry key="yml" value="4" />
         </counts>
@@ -36,8 +36,8 @@
           <entry key="Git file" value="2" />
           <entry key="Image" value="1" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Profiler Session" value="15" />
-          <entry key="Python" value="280" />
+          <entry key="Profiler Session" value="17" />
+          <entry key="Python" value="283" />
           <entry key="PythonStub" value="2" />
           <entry key="Scratch" value="2" />
           <entry key="UML" value="1" />

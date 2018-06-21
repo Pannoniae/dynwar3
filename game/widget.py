@@ -30,11 +30,13 @@ class Widget:
 
     def handle(self, pos: Tuple[int, int]):
         """ Have to refactor this, this is a mess due to the bandaids fixing the bugs """
-        if self.active and self.game.active_widget is None:
+        if self.active and self.game.hovered_widget is None:
             self.on_exit()
-        if not self.is_in_box(pos) and self.game.active_widget is not None and self.game.active_widget == self:
+        if not self.is_in_box(pos) and self.game.hovered_widget is not None and self.game.hovered_widget == self:
             self.on_exit()
-        if (self.game.active_widget is None or self.game.active_widget != self) and self.is_in_box(pos) and not (self.game.active_widget is not None and self.game.active_widget.is_in_box(pos)):
+        if (self.game.hovered_widget is None or self.game.hovered_widget != self)\
+                and self.is_in_box(pos)\
+                and (self.game.hovered_widget is None or not self.game.hovered_widget.is_in_box(pos)):
             self.on_enter()
 
     def click_handle(self, pos: Tuple[int, int]):
@@ -43,11 +45,11 @@ class Widget:
             self.on_click()
 
     def on_enter(self):
-        self.game.active_widget = self
+        self.game.hovered_widget = self
         self.active = True
 
     def on_exit(self):
-        self.game.active_widget = None
+        self.game.hovered_widget = None
         self.active = False
 
     def on_click(self):

@@ -50,15 +50,14 @@ class Unit(GameObject):
             self.widget.update(box)
 
     def on_click(self):
-        attacker = self.game.active_unit
-
-        if attacker is None:
-            self.game.active_unit = self
-        elif attacker is self:
+        if self.game.active_widget is None:
+            self.game.active_widget = self.widget
+        elif self.game.active_widget is self.widget:
             return
-        elif attacker is not self:
+        elif self.game.active_widget is not self.widget:
+            attacker = self.game.active_widget.parent
             attacker.attack(self)
-            self.game.active_unit = None
+            self.game.active_widget = None
 
 class Infantry(Unit):
     pass

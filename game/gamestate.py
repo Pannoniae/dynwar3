@@ -29,8 +29,8 @@ class Game:
         self.event_handler = EventHandler(self)
         self.clock = pygame.time.Clock()
         self.widgets = []
+        self.hovered_widget: Widget = None
         self.active_widget: Widget = None
-        self.active_unit: Unit = None
 
         self.hexmap: HexMap = None
 
@@ -38,7 +38,6 @@ class Game:
 
         self.loader = SaveGameLoader(self, 'data/save.yml')
         self.loader.load_game()
-
 
         while 1:
             self.main_loop()
