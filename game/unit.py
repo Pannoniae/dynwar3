@@ -18,6 +18,8 @@ class Unit(GameObject):
         self.reload()
 
     def can_attack(self, other):
+        if self.country != self.game.active_faction:
+            return False
         if not self.game.hexmap.is_adjacent(self.hex, other.hex):
             return False
         if self.country == other.country:
