@@ -19,7 +19,7 @@ class Renderer:
         self.screen = screen
         self.game = game
         self.clock = pygame.time.Clock()
-        self.layout = HexMapLayout(32, (100, 100))
+        self.layout = HexMapLayout(16, (100, 100))
     def draw(self, mouse_pos):
 
         self.ctx.set_source_rgba(0, 0, 0, 1)
@@ -37,7 +37,7 @@ class Renderer:
                     self.ctx.line_to(x, y)
                 self.ctx.fill()
             else:
-                self.ctx.set_source_surface(self.game.surf.create_from_png('data/grass01.png'),
+                self.ctx.set_source_surface(self.game.surf.create_from_png('data/grass.png'),
                                             *self.layout.get_hex_upper_corner(hex.pos))
                 self.ctx.paint()
 
