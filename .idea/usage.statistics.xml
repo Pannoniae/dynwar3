@@ -6,15 +6,15 @@
         <counts>
           <entry key="Python Console" value="1" />
           <entry key="dummy" value="26" />
-          <entry key="py" value="23456" />
-          <entry key="txt" value="2324" />
+          <entry key="py" value="23533" />
+          <entry key="txt" value="2343" />
           <entry key="yml" value="264" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="2350" />
-          <entry key="Python" value="23457" />
+          <entry key="PLAIN_TEXT" value="2369" />
+          <entry key="Python" value="23534" />
           <entry key="YAML" value="264" />
         </counts>
       </usages-collector>
