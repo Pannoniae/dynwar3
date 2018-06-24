@@ -1,5 +1,4 @@
 import ctypes
-from typing import Tuple
 
 import cairo
 from pygame.rect import Rect

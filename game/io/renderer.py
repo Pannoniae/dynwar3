@@ -1,5 +1,4 @@
 import math
-import random
 from typing import List
 
 import cairo
@@ -38,7 +37,6 @@ class Renderer:
                     self.ctx.line_to(x, y)
                 self.ctx.fill()
             else:
-
                 self.ctx.set_source_surface(self.game.surf.create_from_png(f'data/terrain/grass.png'),
                                             *self.layout.get_hex_upper_corner(hex.pos))
                 self.ctx.paint()

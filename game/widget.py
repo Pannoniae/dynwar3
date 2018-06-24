@@ -2,11 +2,25 @@ from typing import Tuple
 
 from pygame.rect import Rect
 
+
+class NoActiveWidgetError(Exception):
+    pass
+
+
 class GameObject:
 
     def __init__(self, game):
         self.game = game
         self.widget = None
+
+    def on_click(self):
+        if self.game.active_widget is None:
+            self.game.active_widget = self.widget
+        if issubclass(type(self), type(self.game.active_widget.parent)):
+            if self.widget == self.game.active_widget:
+                return
+        return True # if returned True, execution can continue
+
 
 
 

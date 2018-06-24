@@ -1,5 +1,5 @@
 from game.util import get_rect_by_size
-from game.widget import GameObject, Widget
+from game.widget import GameObject, Widget, NoActiveWidgetError
 
 
 class Unit(GameObject):
@@ -50,11 +50,7 @@ class Unit(GameObject):
             self.widget.update(box)
 
     def on_click(self):
-        if self.game.active_widget is None:
-            self.game.active_widget = self.widget
-        elif self.game.active_widget is self.widget:
-            return
-        elif self.game.active_widget is not self.widget:
+        if super().on_click():
             attacker = self.game.active_widget.parent
             attacker.attack(self)
             self.game.active_widget = None
