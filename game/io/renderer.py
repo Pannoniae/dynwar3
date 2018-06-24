@@ -39,7 +39,7 @@ class Renderer:
                 self.ctx.fill()
             else:
 
-                self.ctx.set_source_surface(self.game.surf.create_from_png(f'data/grass.png'),
+                self.ctx.set_source_surface(self.game.surf.create_from_png(f'data/terrain/grass.png'),
                                             *self.layout.get_hex_upper_corner(hex.pos))
                 self.ctx.paint()
             if self.game.debug:
@@ -52,7 +52,7 @@ class Renderer:
             self.ctx.stroke()
 
         for hex in units:
-            self.ctx.set_source_surface(self.game.surf.create_from_png('data/terrain/inf.png'),
+            self.ctx.set_source_surface(self.game.surf.create_from_png('data/units/inf.png'),
                                         *self.layout.get_hex_upper_corner(hex.pos))
             self.ctx.paint()
             self.ctx.move_to(*self.layout.get_hex_position(hex.pos))
