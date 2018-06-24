@@ -4,18 +4,18 @@
     <session id="-1116783055">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Python Console" value="1" />
-          <entry key="dummy" value="26" />
-          <entry key="py" value="24284" />
-          <entry key="txt" value="2428" />
-          <entry key="yml" value="264" />
+          <entry key="Python Console" value="35" />
+          <entry key="dummy" value="36" />
+          <entry key="py" value="25913" />
+          <entry key="txt" value="2454" />
+          <entry key="yml" value="394" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="2454" />
-          <entry key="Python" value="24285" />
-          <entry key="YAML" value="264" />
+          <entry key="PLAIN_TEXT" value="2490" />
+          <entry key="Python" value="25948" />
+          <entry key="YAML" value="394" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -28,9 +28,9 @@
           <entry key="png" value="8" />
           <entry key="properties" value="1" />
           <entry key="pstat" value="17" />
-          <entry key="py" value="287" />
+          <entry key="py" value="297" />
           <entry key="pyi" value="2" />
-          <entry key="yml" value="4" />
+          <entry key="yml" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -40,11 +40,11 @@
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="Profiler Session" value="17" />
           <entry key="Properties" value="1" />
-          <entry key="Python" value="286" />
+          <entry key="Python" value="296" />
           <entry key="PythonStub" value="2" />
           <entry key="Scratch" value="2" />
           <entry key="UML" value="1" />
-          <entry key="YAML" value="4" />
+          <entry key="YAML" value="6" />
         </counts>
       </usages-collector>
     </session>

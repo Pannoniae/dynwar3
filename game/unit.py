@@ -1,10 +1,11 @@
 from game.util import get_rect_by_size
-from game.widget import GameObject, Widget, NoActiveWidgetError
+from game.widget import GameObject, Widget
 
 
 class Unit(GameObject):
-    def __init__(self, game, hex):
+    def __init__(self, game, country, hex):
         super().__init__(game)
+        self.country = country
         self.game = game
         self.hex = hex
 
@@ -18,6 +19,8 @@ class Unit(GameObject):
 
     def can_attack(self, other):
         if not self.game.hexmap.is_adjacent(self.hex, other.hex):
+            return False
+        if self.country == other.country:
             return False
         else:
             return True

@@ -29,17 +29,23 @@ class Renderer:
         self.ctx.set_source_rgba(0.6, 0, 0.4, 1)
         units: List[Hex] = []
         for hex in self.game.hexmap:
-            if self.game.debug:
-                r, g, b = self.colors[hex.terrain]
-                self.ctx.set_source_rgba(r, g, b, 1)
-                for corner in range(0, 7):
-                    x, y = self.layout.flat_hex_corner(self.layout.get_hex_position(hex.pos), self.layout.size, corner)
-                    self.ctx.line_to(x, y)
-                self.ctx.fill()
+            r, g, b = self.colors[hex.terrain]
+            self.ctx.set_source_rgba(r, g, b, 1)
+            for corner in range(0, 7):
+                x, y = self.layout.flat_hex_corner(self.layout.get_hex_position(hex.pos), self.layout.size, corner)
+                self.ctx.line_to(x, y)
+            self.ctx.fill_preserve()
+            if hex.country == 0:
+                self.ctx.set_source_rgba(0.0, 0.0, 1.0, 0.2)
+            elif hex.country == 1:
+                self.ctx.set_source_rgba(1.0, 0.0, 0.0, 0.2)
             else:
-                self.ctx.set_source_surface(self.game.surf.create_from_png(f'data/terrain/grass.png'),
-                                            *self.layout.get_hex_upper_corner(hex.pos))
-                self.ctx.paint()
+                print('Error')
+            self.ctx.fill()
+            #else:
+            #    self.ctx.set_source_surface(self.game.surf.create_from_png(f'data/terrain/grass.png'),
+            #                                *self.layout.get_hex_upper_corner(hex.pos))
+            #    self.ctx.paint()
             if self.game.debug:
                 self.ctx.set_source_rgba(*self.colors['edge'], 1)
                 for corner in range(0, 7):

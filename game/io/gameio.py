@@ -1,6 +1,9 @@
+import logging
+
 from ruamel.yaml import YAML
 
 from game.hexmap import HexMap, Hex, TerrainType
+from game.state import F_GER, F_SOV
 from game.unit import Infantry
 
 
@@ -12,6 +15,17 @@ class Loader(GameIO):
 
 class Saver(GameIO):
     pass
+
+
+def get_country_by_tag(tag):
+    if tag == 'ger':
+        return F_GER
+    elif tag == 'sov':
+        return F_SOV
+    else:
+        logging.warning(f'No faction {tag} found! Using default one...')
+        return 0 # Germany
+
 
 class SaveGameLoader(Loader):
 
@@ -33,10 +47,11 @@ class SaveGameLoader(Loader):
 
         for index, row in enumerate(self.save['terrain_map']):
             for index2, _hex in enumerate(list(row)):
+                country = int(self.save['country_map'][index][index2])
                 if _hex == 'c':
-                    hex = Hex(index2, index, TerrainType.t_clr)
+                    hex = Hex(index2, index, country = country, terrain = TerrainType.t_clr)
                 elif _hex == 'h':
-                    hex = Hex(index2, index, TerrainType.t_hll)
+                    hex = Hex(index2, index, country = country, terrain = TerrainType.t_hll)
                 else:
                     raise ParseError('Illegal terrain type')
 
@@ -46,7 +61,8 @@ class SaveGameLoader(Loader):
             if self.save['units'][_unit]['type'] == 'inf':
                 _pos = eval(_unit)
                 hex = self.game.hexmap.get_hex(_pos)
-                unit = Infantry(self.game, hex)
+                country = get_country_by_tag(self.save['units'][_unit]['side'])
+                unit = Infantry(self.game, country, hex)
                 self.game.hexmap.set_unit(hex, unit)
             else:
                 raise ParseError('Illegal unit type')

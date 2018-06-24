@@ -1,6 +1,7 @@
 import logging
 from typing import Optional
 
+from game.state import F_GER
 from game.unit import Unit
 
 
@@ -32,11 +33,12 @@ class Hex:
 
     # Just a singleton, but we like to write unreadable code
 
-    def __init__(self, x: int, y: int, terrain = TerrainType.t_clr):
+    def __init__(self, x: int, y: int, country = F_GER, terrain = TerrainType.t_clr):
         """ Are you surprised? """
         self.x = x
         self.y = y
         self.terrain = terrain
+        self.country = country
         self.unit: Optional[Unit] = None
 
     @property

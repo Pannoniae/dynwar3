@@ -7,10 +7,21 @@ terrain_map:
   - 'hhhh'
   - 'cchh'
 
+country_map:
+  - '0011'
+  - '0011'
+  - '0011'
+
 units:
   2, 2:
     type: inf
+    side: ger
 
   2, 1:
     type: inf
+    side: sov
+
+  1, 1:
+    type: inf
+    side: sov
 

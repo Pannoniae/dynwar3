@@ -7,7 +7,7 @@ from game.io.eventhandler import EventHandler
 from game.hexmap import HexMap
 from game.io.gameio import SaveGameLoader
 from game.io.renderer import Renderer
-from game.unit import Unit
+from game.state import F_GER, F_SOV
 from game.widget import Widget
 
 
@@ -39,6 +39,9 @@ class Game:
         self.loader = SaveGameLoader(self, 'data/save.yml')
         self.loader.load_game()
 
+        self.active_faction = 0
+        self.turn = 0
+
         while 1:
             self.main_loop()
 
@@ -49,6 +52,17 @@ class Game:
         pygame.display.update()
         self.clock.tick()
         #print(self.clock.get_fps())
+
+    def end_turn(self):
+        if self.active_faction == 0:
+            self.active_faction = 1
+        elif self.active_faction == 1:
+            self._end_turn()
+
+    def _end_turn(self):
+        """ End turn if all players are ready. """
+        self.turn += 1
+        self.active_faction = 0
 
     def remove_widget(self, widget: Widget):
         self.widgets.remove(widget)

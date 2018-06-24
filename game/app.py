@@ -2,7 +2,7 @@ import sys
 
 import pygame
 
-from game.gamestate import Game
+from game.controller import Game
 from game.util import get_cairo_surface
 
 #width, height = 1920, 1080
