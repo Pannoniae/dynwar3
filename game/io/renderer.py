@@ -1,4 +1,5 @@
 import math
+import random
 from typing import List
 
 import cairo
@@ -19,7 +20,7 @@ class Renderer:
         self.screen = screen
         self.game = game
         self.clock = pygame.time.Clock()
-        self.layout = HexMapLayout(16, (100, 100))
+        self.layout = HexMapLayout(32, (100, 100))
     def draw(self, mouse_pos):
 
         self.ctx.set_source_rgba(0, 0, 0, 1)
@@ -37,20 +38,21 @@ class Renderer:
                     self.ctx.line_to(x, y)
                 self.ctx.fill()
             else:
-                self.ctx.set_source_surface(self.game.surf.create_from_png('data/grass.png'),
+
+                self.ctx.set_source_surface(self.game.surf.create_from_png(f'data/grass.png'),
                                             *self.layout.get_hex_upper_corner(hex.pos))
                 self.ctx.paint()
-
-            self.ctx.set_source_rgba(*self.colors['edge'], 1)
-            for corner in range(0, 7):
-                x, y = self.layout.flat_hex_corner(self.layout.get_hex_position(hex.pos), self.layout.size, corner)
-                self.ctx.line_to(x, y)
+            if self.game.debug:
+                self.ctx.set_source_rgba(*self.colors['edge'], 1)
+                for corner in range(0, 7):
+                    x, y = self.layout.flat_hex_corner(self.layout.get_hex_position(hex.pos), self.layout.size, corner)
+                    self.ctx.line_to(x, y)
             if hex.has_unit():
                 units.append(hex)
             self.ctx.stroke()
 
         for hex in units:
-            self.ctx.set_source_surface(self.game.surf.create_from_png('data/inf.png'),
+            self.ctx.set_source_surface(self.game.surf.create_from_png('data/terrain/inf.png'),
                                         *self.layout.get_hex_upper_corner(hex.pos))
             self.ctx.paint()
             self.ctx.move_to(*self.layout.get_hex_position(hex.pos))
