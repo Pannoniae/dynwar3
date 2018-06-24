@@ -6,15 +6,15 @@
         <counts>
           <entry key="Python Console" value="1" />
           <entry key="dummy" value="26" />
-          <entry key="py" value="23533" />
-          <entry key="txt" value="2343" />
+          <entry key="py" value="23637" />
+          <entry key="txt" value="2390" />
           <entry key="yml" value="264" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="2369" />
-          <entry key="Python" value="23534" />
+          <entry key="PLAIN_TEXT" value="2416" />
+          <entry key="Python" value="23638" />
           <entry key="YAML" value="264" />
         </counts>
       </usages-collector>
@@ -24,7 +24,7 @@
           <entry key="js" value="1" />
           <entry key="log" value="1" />
           <entry key="nodeids" value="1" />
-          <entry key="png" value="1" />
+          <entry key="png" value="6" />
           <entry key="pstat" value="17" />
           <entry key="py" value="284" />
           <entry key="pyi" value="2" />
@@ -34,7 +34,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Git file" value="2" />
-          <entry key="Image" value="1" />
+          <entry key="Image" value="6" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="Profiler Session" value="17" />
           <entry key="Python" value="283" />
