@@ -81,11 +81,7 @@ class Renderer:
 
             self.hex_outline(hex)
 
-            if hex.country == 0:
-                self.ctx.set_source_rgba(0.0, 0.0, 1.0, 0.2)
-            elif hex.country == 1:
-                self.ctx.set_source_rgba(1.0, 0.0, 0.0, 0.2)
-            self.ctx.fill()
+            self.select_country_color(hex)
 
             #else:
             #    self.ctx.set_source_surface(self.game.surf.create_from_png(f'data/terrain/grass.png'),
@@ -127,6 +123,12 @@ class Renderer:
             self.ctx.arc(*self.layout.get_containing_hex_center(mouse_pos), self.layout.size / 4, 0, math.pi * 2)
             self.ctx.stroke()
 
+    def select_country_color(self, hex):
+        if hex.country == 0:
+            self.ctx.set_source_rgba(0.0, 0.0, 0.0, 0.2)
+        elif hex.country == 1:
+            self.ctx.set_source_rgba(1.0, 0.0, 0.2, 0.2)
+        self.ctx.fill()
 
     def reload(self):
         for widget in self.game.widgets:
