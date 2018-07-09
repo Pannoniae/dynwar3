@@ -2,13 +2,13 @@ import logging
 
 import cairo
 import pygame
+from pygame.rect import Rect
 
 from game.io.eventhandler import EventHandler
 from game.hexmap import HexMap
 from game.io.gameio import SaveGameLoader
 from game.io.renderer import Renderer
-from game.state import F_GER, F_SOV
-from game.widget import Widget
+from game.widget import Widget, GameObject
 
 
 class Game:
@@ -45,6 +45,7 @@ class Game:
         while 1:
             self.main_loop()
 
+
     def main_loop(self):
         self.event_handler.handle_events()
         pos = pygame.mouse.get_pos()
@@ -67,6 +68,12 @@ class Game:
     def remove_widget(self, widget: Widget):
         self.widgets.remove(widget)
 
-    def add_widget(self, widget: Widget):
+    def _add_widget(self, widget: Widget):
         self.widgets.append(widget)
         return widget
+
+    def add_widget(self, box: Rect, parent: GameObject = None):
+        w = Widget(self, box, parent)
+        return self._add_widget(w)
+
+

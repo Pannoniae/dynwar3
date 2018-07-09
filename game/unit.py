@@ -3,6 +3,9 @@ from game.widget import GameObject, Widget
 
 
 class Unit(GameObject):
+
+    ID = 'unit'
+
     def __init__(self, game, country, hex):
         super().__init__(game)
         self.country = country
@@ -46,19 +49,21 @@ class Unit(GameObject):
 
     def reload(self):
         if not self.widget:
-            self.widget = self.game.add_widget(
-                    Widget(self.game, get_rect_by_size(self.game.renderer.layout.get_hex_upper_corner((self.hex.x, self.hex.y)),
-                                            self.game.renderer.layout.size * 2), self))
+            self.widget = self.game.add_widget(get_rect_by_size(self.game.renderer.layout.get_hex_upper_corner((self.hex.x, self.hex.y)),
+                                            self.game.renderer.layout.size * 2), self)
         else:
             box = get_rect_by_size(self.game.renderer.layout.get_hex_upper_corner((self.hex.x, self.hex.y)),
                                    self.game.renderer.layout.size * 2)
             self.widget.update(box)
 
     def on_click(self):
-        if super().on_click():
-            attacker = self.game.active_widget.parent
-            attacker.attack(self)
-            self.game.active_widget = None
+        if self.game.active_widget:
+            if self.game.active_widget.ID == 'unit':
+                if self.widget == self.game.active_widget:
+                    return
+                attacker = self.game.active_widget.parent
+                attacker.attack(self)
+                self.game.active_widget = None
 
 class Infantry(Unit):
     pass
