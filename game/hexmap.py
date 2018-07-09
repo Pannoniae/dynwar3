@@ -45,15 +45,6 @@ class Hex:
     def pos(self):
         return self.x, self.y
 
-    def get_unit(self):
-        if self.unit is None:
-            raise UnitNotFound('No unit in this hex')
-
-    def set_unit(self, unit: Unit):
-        self.unit = unit
-
-    def has_unit(self):
-        return self.unit is not None
 
     def __add__(self, other):
         return Hex(self.x + other.x, self.y + other.y)
@@ -110,7 +101,7 @@ class HexMap:
             unit.reload()
 
     def set_unit(self, hex: Hex, unit: Unit):
-        hex.set_unit(unit)
+        hex.unit = unit
 
     def get_all_units(self):
         for hex in self:

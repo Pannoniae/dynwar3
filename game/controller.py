@@ -45,6 +45,10 @@ class Game:
         while 1:
             self.main_loop()
 
+    @property
+    def active_object(self) -> GameObject:
+        return self.active_widget.parent
+
 
     def main_loop(self):
         self.event_handler.handle_events()

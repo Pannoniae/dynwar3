@@ -27,13 +27,12 @@ class Unit(GameObject):
             return False
         if self.country == other.country:
             return False
-        else:
-            return True
+
+        return True
 
     def attack(self, other):
         if not self.can_attack(other):
             return
-
         # DUMMY
         other.hp -= 2
         self.hp -= 1
@@ -57,11 +56,12 @@ class Unit(GameObject):
             self.widget.update(box)
 
     def on_click(self):
+        super().on_click()
         if self.game.active_widget:
-            if self.game.active_widget.ID == 'unit':
+            if self.game.active_object.ID == 'unit':
                 if self.widget == self.game.active_widget:
                     return
-                attacker = self.game.active_widget.parent
+                attacker = self.game.active_object
                 attacker.attack(self)
                 self.game.active_widget = None
 

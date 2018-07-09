@@ -82,8 +82,8 @@ class EventHandler(AbstractEventHandler):
             if key == pygame.K_DOWN:
                 self.game.renderer.layout.offset[1] += self.game.renderer.layout.size
                 self.game.renderer.reload()
-            if key == pygame.K_t:
-                self.game.end_turn()
+        if key == pygame.K_t:
+            self.game.end_turn()
 
     def on_mouse_motion(self, pos, rel, buttons):
         for widget in self.game.widgets:

@@ -6,6 +6,7 @@ import cairo
 import pygame
 from game.hexmap import Hex, TerrainType
 from game.layout import HexMapLayout
+from game.state import F_GER, F_SOV
 
 
 class Renderer:
@@ -92,7 +93,7 @@ class Renderer:
             for corner in range(0, 7):
                 x, y = self.layout.flat_hex_corner(self.layout.get_hex_position(hex.pos), self.layout.size, corner)
                 self.ctx.line_to(x, y)
-            if hex.has_unit():
+            if hex.unit:
                 units.append(hex)
             self.ctx.stroke()
 
@@ -100,13 +101,8 @@ class Renderer:
             self.ctx.set_source_surface(self.game.surf.create_from_png('data/units/inf.png'),
                                         *self.layout.get_hex_upper_corner(hex.pos))
             self.ctx.paint()
-            self.ctx.move_to(*self.layout.get_hex_position(hex.pos))
-            self.ctx.set_source_rgba(*self.drawing['HP'], 1)
-            self.ctx.set_line_width(5)
-            self.ctx.set_line_cap(cairo.LINE_CAP_ROUND)
-            self.ctx.rel_move_to(-(self.layout.size / 2), self.layout.size / 2)
-            self.ctx.rel_line_to(self.layout.size * hex.unit.hp / 10, 0)
-            self.ctx.stroke()
+            self.draw_hp(hex)
+            self.draw_flag(hex)
         self.ctx.set_line_width(1)
         self.ctx.set_line_cap(cairo.LINE_CAP_BUTT)
         if self.game.debug:
@@ -122,6 +118,28 @@ class Renderer:
             self.ctx.set_source_rgba(1, 0, 0, 1)
             self.ctx.arc(*self.layout.get_containing_hex_center(mouse_pos), self.layout.size / 4, 0, math.pi * 2)
             self.ctx.stroke()
+
+    def draw_hp(self, hex):
+        self.ctx.move_to(*self.layout.get_hex_position(hex.pos))
+        self.ctx.set_source_rgba(*self.drawing['HP'], 1)
+        self.ctx.set_line_width(5)
+        self.ctx.set_line_cap(cairo.LINE_CAP_ROUND)
+        self.ctx.rel_move_to(-(self.layout.size / 2), self.layout.size / 2)
+        self.ctx.rel_line_to(self.layout.size * hex.unit.hp / 10, 0)
+        self.ctx.stroke()
+
+    def draw_flag(self, hex):
+        self.ctx.move_to(*self.layout.get_hex_upper_corner(hex.pos))
+        if hex.unit.country == F_GER:
+            self.ctx.set_source_rgba(0.2, 0.2, 0.2, 1)
+        elif hex.unit.country == F_SOV:
+            self.ctx.set_source_rgba(1, 0, 0, 1)
+
+        self.ctx.rel_line_to(8, 0)
+        self.ctx.rel_line_to(0, 8)
+        self.ctx.rel_line_to(-8, 0)
+        self.ctx.rel_line_to(0, -8)
+        self.ctx.fill()
 
     def select_country_color(self, hex):
         if hex.country == 0:
