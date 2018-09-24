@@ -1,5 +1,6 @@
 # dynwar3
-Hello! This is a turn-based strategy game on hexagon tiles. Feel free to contribute, send a pull request, or message me!
+Project is **ON HOLD**. Sadly, IRL stuff happened so I don't have time continuing development.
+Hello! This is a turn-based strategy game on hexagon tiles.
 
 Contacts:
 e-mail: on profile
